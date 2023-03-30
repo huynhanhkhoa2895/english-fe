@@ -10,14 +10,17 @@ const LessonTemplate = ({lessons} : Props) => {
   const RenderList = () => {
     let xhtml : JSX.Element[] = [];
     xhtml = lessons.map((lesson : Lesson)=>{
-      return <Box lesson={lesson} />
+      return <Box key={lesson.id} lesson={lesson} />
     });
     return xhtml
   }
 
   return(
     <>
-      <RenderList />
+      <div className={'flex flex-col gap-3'}>
+        <RenderList />
+      </div>
+
     </>
   )
 }

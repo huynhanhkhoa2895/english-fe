@@ -27,7 +27,7 @@ const lessons : Lesson[] = [
   },
   {
     id: 2,
-    name: "Lesson 1",
+    name: "Lesson 2",
     vocabularies: vocabularies
   }
 ]
