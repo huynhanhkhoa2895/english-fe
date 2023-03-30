@@ -1,14 +1,15 @@
 type Props = {
-  className: string
-  name: string
-  register: any
+  className?: string
+  register: any;
+  name: string;
+  required?: boolean;
 }
 
-const Input = ({className,name,register} : Props) => {
+const Input = ({className,register,name,required} : Props) => {
   return(
     <input
-      className={'py-3 px-3'}
-      {...register}
+      className={'py-1 px-2 border border-gray-500 rounded-lg '+className}
+      {...register(name,{required})}
     />
   )
 }
