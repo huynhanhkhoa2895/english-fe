@@ -17,7 +17,7 @@ const DefaultLayout = ({children} : Props) => {
         </Head>
         <main>
           <Header />
-          <div className={'container mx-auto'}>
+          <div className={'container mx-auto py-5'}>
             {children}
           </div>
         </main>
