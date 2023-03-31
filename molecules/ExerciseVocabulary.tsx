@@ -1,11 +1,21 @@
 import useVocabulary from "@/hooks/useVocabulary";
-import LessonVocabulary from "@/organisms/LessonVocabulary";
+import ExerciseItemVocabulary from "@/molecules/ExerciseItemVocabulary";
+import {useState} from "react";
+
+
 
 const ExerciseVocabulary = ({lesson} : {lesson : Lesson}) => {
   const vocabularies = useVocabulary(lesson)
-  return vocabularies.map((vocabulary: Vocabulary)=>
-    <div className={'pb-5'} key={vocabulary.id}>
-      <LessonVocabulary key={vocabulary.id} vocabulary={vocabulary} />
+  const [step,setStep] = useState<number>(0)
+  const [result,setResult] = useState<VocabularyResult[]>([])
+
+  const handleResult = () => {
+
+  }
+
+  return vocabularies.map((vocabulary: Vocabulary, index: number)=>
+    <div className={'pb-5 '+(step === index ? 'block' : 'hidden')} key={vocabulary.id}>
+      <ExerciseItemVocabulary key={vocabulary.id} vocabulary={vocabulary} handleResult={handleResult} />
     </div>
   )
 }

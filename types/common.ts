@@ -19,3 +19,8 @@ type Lesson = {
   vocabularies: Vocabulary[]
   createdAt?: string;
 }
+
+type VocabularyResult = {
+  vocabulary : Vocabulary;
+  result : boolean;
+}
