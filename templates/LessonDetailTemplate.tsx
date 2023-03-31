@@ -1,17 +1,13 @@
 import LessonVocabulary from "@/organisms/LessonVocabulary";
+import LessonListVocabulary from "@/organisms/LessonListVocabulary";
+import LessonListButtonGroup from "@/molecules/LessonListButtonGroup";
 
 const LessonDetailTemplate = ({lesson} : {lesson : Lesson}) => {
-  const RenderVocabulary = () => {
-    return lesson?.vocabularies.map((vocabulary: Vocabulary)=>
-        <div className={'pb-5'}>
-          <LessonVocabulary key={vocabulary.id} vocabulary={vocabulary} />
-        </div>
 
-    )
-  }
   return(
       <div className={'max-w-[1440px] mx-auto'}>
-        <RenderVocabulary />
+        <LessonListButtonGroup className={'mb-3'} lesson={lesson} />
+        <LessonListVocabulary lesson={lesson} />
       </div>
   )
 }
