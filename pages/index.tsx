@@ -1,41 +1,22 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import LessonTemplate from "@/templates/LessonTemplate";
 
-const vocabularies : Vocabulary[] = [
-  {
-    id: 1,
-    vocabulary: 'test',
-    translate: 'kiểm tra'
-  },
-  {
-    id: 2,
-    vocabulary: 'dog',
-    translate: 'chó'
-  },
-  {
-    id: 3,
-    vocabulary: 'cat',
-    translate: 'mèo'
-  }
-]
-
-const lessons : Lesson[] = [
-  {
-    id: 1,
-    name: "Lesson 1",
-    vocabularies: vocabularies
-  },
-  {
-    id: 2,
-    name: "Lesson 2",
-    vocabularies: vocabularies
-  }
-]
-
-export default function Home() {
+export default function Home({lessons}: { lessons: Lesson[] }) {
   return (
     <DefaultLayout>
       <LessonTemplate lessons={lessons} />
     </DefaultLayout>
   );
+}
+
+export async function getStaticProps({req,res}) {
+  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson').then((res)=>res.json()).catch((e)=>{
+    console.log(e)
+  })
+
+  return {
+    props: {
+      lessons: data?.data || [],
+    },
+  }
 }

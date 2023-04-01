@@ -9,7 +9,7 @@ type Props = {
 const LessonListButtonGroup = ({lesson, className} : Props) => {
   return(
     <div className={'flex justify-end '+className}>
-      <Link href={'/exercise/'+lesson.id} >
+      <Link href={'/exercise/'+lesson?.id} >
         <Button>
           Do exercise
         </Button>

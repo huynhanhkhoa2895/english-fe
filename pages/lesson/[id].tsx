@@ -1,30 +1,6 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import LessonDetailTemplate from "@/templates/LessonDetailTemplate";
 
-const vocabularies : Vocabulary[] = [
-  {
-    id: 1,
-    vocabulary: 'test',
-    translate: 'kiểm tra'
-  },
-  {
-    id: 2,
-    vocabulary: 'dog',
-    translate: 'chó'
-  },
-  {
-    id: 3,
-    vocabulary: 'cat',
-    translate: 'mèo'
-  }
-]
-
-const lesson : Lesson = {
-    id: 1,
-    name: "Lesson 1",
-    vocabularies: vocabularies
-}
-
 const Lesson = ({lesson} : {lesson : Lesson}) => {
   return(
     <DefaultLayout>
@@ -35,20 +11,27 @@ const Lesson = ({lesson} : {lesson : Lesson}) => {
 export default Lesson
 
 export async function getStaticPaths() {
+  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson').then((res)=>res.json()).catch((e)=>{
+    console.log(e)
+  })
+  const paths = (data?.data || []).map((lesson : Lesson)=>({
+    params: { id: lesson.id.toString() }
+  }))
   return {
-    paths: [{ params: { id: '1' } }],
-    fallback: false, // can also be true or 'blocking'
+    paths,
+    fallback: true, // can also be true or 'blocking'
   }
 }
 
 export async function getStaticProps(context) {
-  // const id = context?.params.id
-  // const res = await fetch('https://.../posts')
-  // const posts = await res.json()
+  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+context.params.id).then((res)=>res.json()).catch((e)=>{
+    console.log(e)
+  })
+
 
   return {
     props: {
-      lesson,
+      lesson: data?.data || null,
     },
   }
 }

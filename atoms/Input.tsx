@@ -3,12 +3,14 @@ type Props = {
   register: any;
   name: string;
   required?: boolean;
+  type?:string;
 }
 
-const Input = ({className,register,name,required} : Props) => {
+const Input = ({className,register,name,required,type='text'} : Props) => {
   return(
     <input
-      className={'py-1 px-2 border border-gray-500 rounded-lg '+className}
+      type={type}
+      className={'py-1 px-2 border border-gray-500 rounded-lg w-full '+className}
       {...register(name,{required})}
     />
   )

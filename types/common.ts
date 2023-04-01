@@ -22,5 +22,6 @@ type Lesson = {
 
 type VocabularyResult = {
   vocabulary : Vocabulary;
+  answer: string;
   result : boolean;
 }

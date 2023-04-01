@@ -1,9 +1,8 @@
-import Input from "@/atoms/Input";
-import Mask from "@/molecules/Mask";
 import {useForm} from "react-hook-form";
 import Audio from "@/molecules/Audio";
 import Button from "@/atoms/button";
 import FormControl from "@/molecules/FormControl";
+import Mask from "@/molecules/Mask";
 
 type Props = {
   vocabulary : Vocabulary;
@@ -14,14 +13,20 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = (data : any) => {
-    if(data?.answer )
+    if(data?.answer){
+      handleResult({
+        vocabulary,
+        result: data?.answer === vocabulary.vocabulary,
+        answer: data?.answer
+      })
+    }
   }
 
   return(
       <form className={'grid grid-cols-2 w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <div className={'text-2xl font-bold'}>{vocabulary.translate || ''}</div>
-          {vocabulary.sound && <Audio src={vocabulary.sound || ''}/>}
+          <div className={'text-2xl font-bold mb-2'}><Mask value={vocabulary.translate || ''} haveMask /></div>
+          {vocabulary.sound && <Audio src={process.env.NEXT_PUBLIC_APP_BE+'/storage/speech/'+vocabulary.sound || ''}/>}
         </div>
         <div>
           <FormControl name={'answer'} register={register} errors={errors} required  />
