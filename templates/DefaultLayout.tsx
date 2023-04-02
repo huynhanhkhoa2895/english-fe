@@ -1,12 +1,15 @@
 import Head from "next/head";
 import {ReactDOM} from "react";
 import Header from "@/organisms/Header";
+import Button from "@/atoms/button";
+import {useRouter} from "next/router";
 
 type Props ={
   children : ReactDOM
 }
 
 const DefaultLayout = ({children} : Props) => {
+  const router = useRouter()
   return(
       <>
         <Head>
@@ -18,6 +21,14 @@ const DefaultLayout = ({children} : Props) => {
         <main>
           <Header />
           <div className={'container mx-auto py-5 px-3'}>
+            {
+              router.pathname !== '/' && (
+                <div className={'mb-5'}>
+                  <Button handleClick={()=>router.back()}>Go back</Button>
+                </div>
+              )
+            }
+
             <div className={'shadow-2xl rounded-2xl p-5'}>
               {children}
             </div>

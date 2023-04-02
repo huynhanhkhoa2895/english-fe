@@ -8,12 +8,17 @@ type Props = {
 
 const LessonListButtonGroup = ({lesson, className} : Props) => {
   return(
-    <div className={'flex justify-end '+className}>
-      <Link href={'/exercise/'+lesson?.id} >
-        <Button>
-          Do exercise
-        </Button>
-      </Link>
+    <div className={'flex items-center justify-between '+className}>
+      <div>
+        <p><span className={'font-bold'}>Total:</span> {lesson.vocabularies.length || 0}</p>
+      </div>
+      <div>
+        <Link href={'/exercise/'+lesson?.id} >
+          <Button>
+            Do exercise
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }
