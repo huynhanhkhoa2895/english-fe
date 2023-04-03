@@ -4,6 +4,8 @@ import FormControl from "@/molecules/FormControl";
 import Button from "@/atoms/button";
 import {useRouter} from "next/router";
 import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 const AuthenticationTemplate = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -34,7 +36,7 @@ const AuthenticationTemplate = () => {
             <label>Password</label>
             <FormControl key={'password'} className={'w-full'} type={'password'} name={'password'} register={register} errors={errors} required />
           </div>
-          <Button type={'submit'}>Login</Button>
+          <Button type={'submit'} disabled={isLoading}><>Login {isLoading && <FontAwesomeIcon icon={faSpinner} spin />}</></Button>
         </form>
       </div>
   )

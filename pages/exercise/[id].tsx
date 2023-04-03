@@ -4,7 +4,7 @@ import LessonExcersiseTemplate from "@/templates/LessonExcersiseTemplate";
 const Excercise = ({lesson} : {lesson : Lesson}) => {
   return(
     <DefaultLayout>
-      <LessonExcersiseTemplate lesson={lesson} />
+      {lesson && <LessonExcersiseTemplate lesson={lesson}/>}
     </DefaultLayout>
   )
 }
@@ -33,5 +33,6 @@ export async function getStaticProps(context : any) {
     props: {
       lesson: data?.data || null,
     },
+    revalidate: 60
   }
 }

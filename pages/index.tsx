@@ -18,5 +18,6 @@ export async function getStaticProps() {
     props: {
       lessons: data?.data || [],
     },
+    revalidate: 60
   }
 }
