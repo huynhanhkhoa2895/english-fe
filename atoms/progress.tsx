@@ -10,7 +10,7 @@ const Progress = ({className,maxValue,currentValue} : Props) => {
   const refProcess = useRef<HTMLDivElement | null>(null)
 
   const calcPercent = () => {
-    return Math.ceil((currentValue/maxValue)*100)
+    return currentValue && maxValue ? Math.ceil((currentValue/maxValue)*100) : 0
   }
 
   useEffect(() => {

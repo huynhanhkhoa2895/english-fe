@@ -1,6 +1,6 @@
 
 type Props = {
-  children : JSX.Element;
+  children : JSX.Element | string;
   className? : string;
   handleClick? : any;
   type? : 'button' | 'submit'

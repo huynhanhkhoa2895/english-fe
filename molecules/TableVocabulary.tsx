@@ -9,7 +9,7 @@ type Props = {
 const TableVocabulary = ({data} : Props) => {
   const [maskVocabularyAll,setMaskVocabularyAll] = useState(false)
   const [maskTranslateAll,setMaskTranslateAll] = useState(false)
-  const RenderVocabulary = () => {
+  const RenderVocabulary : any = () => {
     return  data.map((vocabulary : Vocabulary)=> <tr key={vocabulary.id}>
       <td className={'border border-slate-300 p-2'}>
         <div className={'flex gap-1'}>

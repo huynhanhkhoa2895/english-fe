@@ -9,7 +9,7 @@ export default function Home({lessons}: { lessons: Lesson[] }) {
   );
 }
 
-export async function getStaticProps({req,res}) {
+export async function getStaticProps() {
   const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson').then((res)=>res.json()).catch((e)=>{
     console.log(e)
   })

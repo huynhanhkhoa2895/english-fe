@@ -7,7 +7,7 @@ type Props = {
 
 const LessonTemplate = ({lessons} : Props) => {
 
-  const RenderList = () => {
+  const RenderList: any = () => {
     let xhtml : JSX.Element[] = [];
     xhtml = lessons.map((lesson : Lesson)=>{
       return <Box key={lesson.id} lesson={lesson} />

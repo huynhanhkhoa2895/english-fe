@@ -5,7 +5,7 @@ import Button from "@/atoms/button";
 import {useRouter} from "next/router";
 
 type Props ={
-  children : ReactDOM
+  children : JSX.Element | string
 }
 
 const DefaultLayout = ({children} : Props) => {

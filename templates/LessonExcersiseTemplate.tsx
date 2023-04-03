@@ -1,7 +1,4 @@
 import ExerciseVocabulary from "@/molecules/ExerciseVocabulary";
-import Button from "@/atoms/button";
-
-
 
 const LessonExcersiseTemplate = ({lesson} : {lesson : Lesson}) => {
   return(
