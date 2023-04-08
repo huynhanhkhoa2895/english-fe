@@ -4,20 +4,20 @@ import LessonTemplate from "@/templates/LessonTemplate";
 export default function Home({lessons}: { lessons: Lesson[] }) {
   return (
     <DefaultLayout>
-      <LessonTemplate lessons={lessons} />
+      <LessonTemplate lessons={lessons || []} />
     </DefaultLayout>
   );
 }
 
-export async function getStaticProps() {
-  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson').then((res)=>res.json()).catch((e)=>{
+export async function getServerSideProps(context) {
+  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/').then((res)=>res.json()).catch((e)=>{
     console.log(e)
   })
 
+
   return {
     props: {
-      lessons: data?.data || [],
+      lessons: data?.data || null,
     },
-    revalidate: 60
   }
 }

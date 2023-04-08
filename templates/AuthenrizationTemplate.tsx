@@ -27,7 +27,7 @@ const AuthenticationTemplate = () => {
 
   return(
       <div className={'w-full h-full max-w-[750px] max-h-[500px] border border-gray-500 rounded-3xl p-5'}>
-        <form className={'flex flex-col w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
+        <form autoComplete={"off"} className={'flex flex-col w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
           <div className={'w-full'}>
             <label>Email</label>
             <FormControl key={'email'} className={'w-full'} type={'email'} name={'email'} register={register} errors={errors} required />

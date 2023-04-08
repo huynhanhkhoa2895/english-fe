@@ -23,13 +23,13 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
   }
 
   return(
-      <form className={'grid grid-cols-2 w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
+      <form autoComplete={"off"} className={'grid grid-cols-2 w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div className={'text-2xl font-bold mb-2'}><Mask value={vocabulary.translate || ''} haveMask /></div>
           {vocabulary.sound && <Audio src={vocabulary.sound || ''} autoplay={true}/>}
         </div>
         <div>
-          <FormControl name={'answer'} register={register} errors={errors} required  />
+          <FormControl name={'answer'} register={register} errors={errors} required autofocus />
           <div className={'mt-3 text-right'}>
             <Button type={"submit"}>Next</Button>
           </div>
