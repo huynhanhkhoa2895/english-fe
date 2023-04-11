@@ -3,6 +3,7 @@ import Audio from "@/molecules/Audio";
 import Button from "@/atoms/button";
 import FormControl from "@/molecules/FormControl";
 import Mask from "@/molecules/Mask";
+import {Vocabulary} from "@/types/common";
 
 type Props = {
   vocabulary : Vocabulary;
@@ -15,9 +16,11 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
   const onSubmit = (data : any) => {
     if(data?.answer){
       handleResult({
-        vocabulary,
+        question : vocabulary.vocabulary,
         result: data?.answer === vocabulary.vocabulary,
-        answer: data?.answer
+        answer: data?.answer,
+        current_answer: vocabulary.vocabulary,
+        type: 'vocabulary'
       })
     }
   }

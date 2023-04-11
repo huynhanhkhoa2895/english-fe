@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {sampleSize} from 'lodash'
 const useVocabulary = (lesson : Lesson) => {
-  const [listVocabulary,setListVocabulary] = useState<Vocabulary[]>(lesson.vocabularies)
+  const [listVocabulary,setListVocabulary] = useState<Vocabulary[]>(lesson?.vocabularies || [])
 
   useEffect(()=>{
     const newArray = sampleSize(listVocabulary,listVocabulary.length)

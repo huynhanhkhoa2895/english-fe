@@ -10,7 +10,7 @@ const Lesson = ({lesson} : {lesson : Lesson}) => {
 }
 export default Lesson
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context : any) {
   const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+context.params.id).then((res)=>res.json()).catch((e)=>{
     console.log(e)
   })

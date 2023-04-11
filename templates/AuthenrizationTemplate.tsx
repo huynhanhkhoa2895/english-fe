@@ -11,6 +11,7 @@ const AuthenticationTemplate = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
   const {login} = useAuth()
+  const [result,setResult] = useState<string>("")
   const [isLoading,setIsLoading] = useState<boolean>(false)
   const onSubmit = async (data : any) => {
     setIsLoading(true)
@@ -18,6 +19,8 @@ const AuthenticationTemplate = () => {
       const res = await login(data.email,data.password)
       if(res){
         return router.push("/")
+      } else {
+        setResult("Login error")
       }
     }catch (e){
 
@@ -27,7 +30,7 @@ const AuthenticationTemplate = () => {
 
   return(
       <div className={'w-full h-full max-w-[750px] max-h-[500px] border border-gray-500 rounded-3xl p-5'}>
-        <form autoComplete={"off"} className={'flex flex-col w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
+        <form className={'flex flex-col w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
           <div className={'w-full'}>
             <label>Email</label>
             <FormControl key={'email'} className={'w-full'} type={'email'} name={'email'} register={register} errors={errors} required />
@@ -37,6 +40,7 @@ const AuthenticationTemplate = () => {
             <FormControl key={'password'} className={'w-full'} type={'password'} name={'password'} register={register} errors={errors} required />
           </div>
           <Button type={'submit'} disabled={isLoading}><>Login {isLoading && <FontAwesomeIcon icon={faSpinner} spin />}</></Button>
+          {result !== '' && <p className={'text-sm text-red-500'}>{result}</p>}
         </form>
       </div>
   )

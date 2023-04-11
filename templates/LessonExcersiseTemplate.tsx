@@ -1,4 +1,5 @@
 import ExerciseVocabulary from "@/molecules/ExerciseVocabulary";
+import {Lesson} from "@/types/common";
 
 const LessonExcersiseTemplate = ({lesson} : {lesson : Lesson}) => {
   return(

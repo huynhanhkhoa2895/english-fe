@@ -12,6 +12,7 @@ const useAuth = () => {
     }).then((res)=>res.json()).then((data)=>{
       if(data?.token){
         setCookie("token",data.token,{maxAge: 60 * 6 * 24})
+        setCookie("userid",data.id,{maxAge: 60 * 6 * 24})
         return true
       }
       return false

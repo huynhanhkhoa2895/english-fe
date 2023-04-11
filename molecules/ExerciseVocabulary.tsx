@@ -5,28 +5,36 @@ import Progress from "@/atoms/progress";
 import Button from "@/atoms/button";
 import ExcerciseResult from "@/molecules/ExcerciseResult";
 import {useRouter} from "next/router";
+import {Lesson, Result, Vocabulary} from "@/types/common";
 
 const ExerciseVocabulary = ({lesson} : {lesson : Lesson}) => {
   const vocabularies = useVocabulary(lesson)
   const [step,setStep] = useState<number>(0)
-  const [results,setResult] = useState<VocabularyResult[]>([])
+  const [results,setResult] = useState<Result[]>([])
   const router = useRouter();
 
   const handleFinish = () => {
     setStep(vocabularies.length)
-    setResult((results: VocabularyResult[])=>{
-      let arr : VocabularyResult[] = results;
+    setResult((results: Result[])=>{
+      let arr : Result[] = results;
       for(let i = step;i < vocabularies.length;i++){
         const vocabulary = vocabularies[i]
-        arr = [...arr,...[{vocabulary,result : false,answer : ''}]]
+        arr = [...arr,...[
+            {
+              question : vocabulary.vocabulary,
+              result: false,
+              answer: '',
+              current_answer: vocabulary.vocabulary,
+              type: 'vocabulary'
+            }
+        ]]
       }
-      console.log("arr",arr)
       return arr
     })
   }
 
-  const handleResult = (result : VocabularyResult) => {
-    setResult((results: VocabularyResult[])=>{
+  const handleResult = (result : Result) => {
+    setResult((results: Result[])=>{
       return [...results,result]
     })
     setStep((step: number)=>{

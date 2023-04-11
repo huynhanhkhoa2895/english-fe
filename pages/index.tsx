@@ -1,23 +1,27 @@
 import DefaultLayout from "@/templates/DefaultLayout";
-import LessonTemplate from "@/templates/LessonTemplate";
+import ListTemplate from "@/templates/ListTemplate";
+import axios from "axios";
+import {getCookie} from "cookies-next";
+import {Student} from "@/types/common";
 
-export default function Home({lessons}: { lessons: Lesson[] }) {
+export default function Home({student}: { student: Student }) {
+  const lessons = student?.lessons
   return (
     <DefaultLayout>
-      <LessonTemplate lessons={lessons || []} />
+      <ListTemplate data={lessons || []} />
     </DefaultLayout>
   );
 }
 
-export async function getServerSideProps(context) {
-  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/').then((res)=>res.json()).catch((e)=>{
-    console.log(e)
-  })
-
-
+export async function getServerSideProps({req,res} : any) {
+  const data = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/student/'+getCookie('userid',{req,res}),{
+    headers: {
+      "Authorization" : "Bearer "+getCookie('token',{req,res})
+    }
+  }).then((res)=>res)
   return {
     props: {
-      lessons: data?.data || null,
+      student: data?.data?.data || null,
     },
   }
 }
