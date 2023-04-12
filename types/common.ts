@@ -53,9 +53,9 @@ export type QuestionContent = {
 export type Result = {
   question : string;
   answer: string;
-  current_answer: string;
+  correct_answer: string;
   result : boolean;
-  type: 'vocabulary' | 'question'
+  question_type: 'vocabulary' | 'question'
 }
 
 export type Student = {

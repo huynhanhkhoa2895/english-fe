@@ -1,5 +1,6 @@
 import Button from "@/atoms/button";
 import Link from "next/link";
+import {Lesson} from "@/types/common";
 
 type Props = {
   lesson: Lesson;

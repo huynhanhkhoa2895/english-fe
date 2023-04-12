@@ -8,7 +8,7 @@ export default function handler(
     res: NextApiResponse<any>
 ) {
   if(req.method === "POST") {
-    fetch("/api/create-result",{
+    return fetch(process.env.NEXT_PUBLIC_APP_BE+"/api/result",{
       method: "POST",
       headers: {
         "Authorization": "Bearer "+getCookie("token",{req,res})
@@ -17,12 +17,13 @@ export default function handler(
     })
     .then((res)=>res.json)
     .then((result)=>{
-      res.status(200).json({ result });
+       return res.status(200).json({ result });
     }).catch((error)=>{
-      res.status(500).json({ error });
+      console.log("error",error)
+      return res.status(500).json({ error });
     })
   } else {
-    res.status(400).json({ error: "Bad Method" });
+    return res.status(400).json({ error: "Bad Method" });
   }
 
 }

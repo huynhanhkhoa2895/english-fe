@@ -40,7 +40,7 @@ const AuthenticationTemplate = () => {
             <FormControl key={'password'} className={'w-full'} type={'password'} name={'password'} register={register} errors={errors} required />
           </div>
           <Button type={'submit'} disabled={isLoading}><>Login {isLoading && <FontAwesomeIcon icon={faSpinner} spin />}</></Button>
-          {result !== '' && <p className={'text-sm text-red-500'}>{result}</p>}
+          {result !== '' && <p className={'text-sm text-red'}>{result}</p>}
         </form>
       </div>
   )

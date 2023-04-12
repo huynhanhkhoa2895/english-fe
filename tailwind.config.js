@@ -13,8 +13,10 @@ module.exports = {
         primary: "#291D97",
         grey: '#ccc',
         secondary: "#d3a809",
-        green: '#18b50d',
-        red: '#ec1414'
+        green: '#30ae27',
+        'dark-green': '#086e18',
+        'dark-red': '#a90404',
+        red: '#ea3030'
       }
     },
   },

@@ -1,6 +1,6 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import LessonDetailTemplate from "@/templates/LessonDetailTemplate";
-
+import {Lesson} from '@/types/common'
 const Lesson = ({lesson} : {lesson : Lesson}) => {
   return(
     <DefaultLayout>

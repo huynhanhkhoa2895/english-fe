@@ -16,7 +16,7 @@ const PracticeDetail = ({practice} : {practice : Practice}) => {
 export default PracticeDetail
 
 export async function getServerSideProps({req,res,params} : any) {
-  const data = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/practice/'+params.id,{
+  const data : any = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/practice/'+params.id,{
     headers: {
       "Authorization" : "Bearer "+getCookie('token',{req,res})
     }

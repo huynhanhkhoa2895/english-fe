@@ -10,7 +10,7 @@ const FormControl = ({register,name,errors,required,type,className='',autofocus,
           type === "radio" ? <Radio label={label} value={value} name={name} register={register} required={required} /> : <Input type={type} register={register} name={name} required={required} autofocus={autofocus} />
         }
       </div>
-      {errors && errors[name] && <div className={'text-red-500'}>{errors[name]?.message || 'This field is required'}</div>}
+      {errors && errors[name] && <div className={'text-red'}>{errors[name]?.message || 'This field is required'}</div>}
     </>
   )
 }

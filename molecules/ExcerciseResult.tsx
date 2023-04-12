@@ -1,8 +1,9 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFaceSadTear, faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 import Button from "@/atoms/button";
+import {Result} from "@/types/common";
 
-const ExcerciseResult = ({results,reset} : {results : VocabularyResult[],reset : Function}) => {
+const ExcerciseResult = ({results,reset} : {results : Result[],reset : Function}) => {
   const RenderTableResult = () => {
     return(
         <table className={'table-fixed w-full border-collapse border border-slate-400'}>
@@ -15,8 +16,8 @@ const ExcerciseResult = ({results,reset} : {results : VocabularyResult[],reset :
           </thead>
           <tbody>
           {
-            results.map((result: VocabularyResult,index : number)=><tr key={index}>
-              <td className={'border border-slate-300 p-2'}>{result?.vocabulary?.vocabulary || ''}</td>
+            results.map((result: Result,index : number)=><tr key={index}>
+              <td className={'border border-slate-300 p-2'}>{result?.question || ''}</td>
               <td className={'border border-slate-300 p-2'}>{result?.answer || ''}</td>
               <td className={'border border-slate-300 p-2'}><FontAwesomeIcon icon={result?.result ? faThumbsUp : faFaceSadTear} width={15} color={result?.result ? 'green' : 'red'} /></td>
             </tr>)

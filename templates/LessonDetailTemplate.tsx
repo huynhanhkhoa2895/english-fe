@@ -1,5 +1,6 @@
 import LessonListVocabulary from "@/organisms/LessonListVocabulary";
 import LessonListButtonGroup from "@/molecules/LessonListButtonGroup";
+import {Lesson} from "@/types/common";
 
 const LessonDetailTemplate = ({lesson} : {lesson : Lesson}) => {
 
