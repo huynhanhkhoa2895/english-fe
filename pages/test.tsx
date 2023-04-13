@@ -1,4 +1,4 @@
-import {QuestionContent} from "@/types/common";
+import {Question, QuestionContent} from "@/types/common";
 import QuestionContentMultipleChoice from "@/molecules/QuestionContentMultipleChoice";
 
 const data : QuestionContent = {
@@ -12,10 +12,19 @@ const data : QuestionContent = {
     },
   ]
 }
+
+const question : Question = {
+  id : 1,
+  title: "Test",
+  type: "test",
+  description: "test",
+  contents: [data]
+}
+
 const Test = () => {
   return(
     <>
-      <QuestionContentMultipleChoice  />
+      <QuestionContentMultipleChoice question={question} />
     </>
   )
 }
