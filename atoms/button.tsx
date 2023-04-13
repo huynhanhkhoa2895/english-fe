@@ -30,7 +30,11 @@ const Button = ({children, handleClick, className = '', type = 'button', size = 
   }
 
   return(
-    <button onClick={handleClick} className={twMerge('bg-primary text-white font-semibold',round ? 'rounded-xl' : '',disabled ? 'bg-gray-500' : '',renderVariant(),renderSize(),className)} type={type} disabled={disabled}>
+    <button onClick={handleClick}
+            className={twMerge('bg-primary text-white font-semibold',round ? 'rounded-xl' : '',disabled ? 'bg-gray-500' : '',renderVariant(),renderSize(),className)}
+            type={type}
+            disabled={disabled}
+    >
       {children}
     </button>
   )

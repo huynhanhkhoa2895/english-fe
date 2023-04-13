@@ -48,6 +48,12 @@ export type QuestionContent = {
   id: string | number;
   question: string;
   answer: string;
+  values?: QuestionContentValues[];
+}
+
+export type QuestionContentValues = {
+  label : string;
+  value : string;
 }
 
 export type Result = {
