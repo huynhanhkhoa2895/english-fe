@@ -10,6 +10,18 @@ const data : QuestionContent = {
       label : "Test Answer 1",
       value : "1",
     },
+    {
+      label : "Test Answer 2",
+      value : "2",
+    },
+    {
+      label : "Test Answer 3",
+      value : "3",
+    },
+    {
+      label : "Test Answer 4",
+      value : "4",
+    },
   ]
 }
 

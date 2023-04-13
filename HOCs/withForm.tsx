@@ -1,26 +1,15 @@
 import { useForm } from 'react-hook-form';
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import Button from "@/atoms/button";
-import {Question, Result} from "@/types/common";
+import { Question, Result} from "@/types/common";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faList} from "@fortawesome/free-solid-svg-icons";
 import {getCookie} from "cookies-next";
+import {ComponentWithForm} from "@/types/component";
 
-type PropsForm = {
-  defaultValues: {
-    [key: string]: any;
-  };
-  idForm?: string;
-};
-
-type PropsChildForm = {
-  submitText?: JSX.Element|string;
-  loading?: boolean;
-  question: Question;
-};
-const withForm = (FieldsComponent: any) => {
+const withForm = (FieldsComponent: FC<ComponentWithForm>) => {
   // eslint-disable-next-line react/display-name
-  return ({ submitText, loading, question }: PropsChildForm) => {
+  return ({ submitText, question }: {submitText? : string | JSX.Element, question}) => {
     const {
       control,
       handleSubmit,
@@ -29,7 +18,8 @@ const withForm = (FieldsComponent: any) => {
 
     const [isShowAnswer,setShowAnswer] = useState<boolean>(false)
     const [isSubmit,setIsSubmit] = useState<boolean>(false)
-
+    const [loading,setLoading] = useState<boolean>(false)
+    const [dataPush,setDataPush] = useState<any>(null)
     const handleShowAnswer = (value: boolean) => {
       setShowAnswer(value)
     }
@@ -45,8 +35,11 @@ const withForm = (FieldsComponent: any) => {
       console.log(result)
     }
 
-    const onSubmit = (data : any) => {
+    const onSubmit = async (data : any) => {
+      console.log("onSubmit")
       setIsSubmit(true)
+      setDataPush(data);
+      setLoading(true)
       if(!isSubmit) {
         const dataResult : Result[] = question.contents.map((content)=>({
           question_id: content.id,
@@ -56,33 +49,36 @@ const withForm = (FieldsComponent: any) => {
           correct_answer: content.answer,
           result: data['radio_'+content.id] === content.answer.toLowerCase()
         }))
-        callAPI(dataResult).then((result)=>{
+        const result = await callAPI(dataResult).then((result)=>{
 
         })
       }
+      setLoading(false)
+    }
+
+    const onError = (e) => {
+      console.log("onError",e)
 
     }
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)} id={`form`}>
+      <form onSubmit={handleSubmit(onSubmit,onError)}>
         <FieldsComponent
-          question={question}
-          loading={loading || false}
           control={control}
           errors={errors}
+          isSubmit={isSubmit}
+          isShowAnswer={isShowAnswer}
+          dataPush={dataPush}
+          contents={question.contents}
         />
         <div className={'mt-3 flex gap-1'}>
           {isSubmit && <Button type={'button'} className={'flex gap-1 items-center'} round={false} size={'sm'} variant={'secondary'}
                                handleClick={() => setShowAnswer(true)}><><FontAwesomeIcon icon={faList} width={15}/> Show Answer</>
           </Button>}
-          <Button type={'submit'} className={'flex gap-1 items-center'} round={false} size={'sm'}><><FontAwesomeIcon icon={faCheck} width={15} /> Finish</></Button>
+          <Button type={'submit'} className={'flex gap-1 items-center'} round={false} size={'sm'}>
+            {submitText || <><FontAwesomeIcon icon={faCheck} width={15} /> Finish</>}
+          </Button>
         </div>
-        <Button
-          type={'submit'}
-          disabled={loading || false}
-        >
-          {submitText || ''}
-        </Button>
       </form>
     );
   };

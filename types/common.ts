@@ -52,6 +52,7 @@ export type QuestionContent = {
 }
 
 export type QuestionContentValues = {
+  id: string;
   label : string;
   value : string;
 }

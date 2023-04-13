@@ -1,20 +1,28 @@
-import {Question, QuestionContent} from "@/types/common";
+import {Question, QuestionContent, QuestionContentValues} from "@/types/common";
 import withForm from "@/HOCs/withForm";
 import FormControl from "@/molecules/FormControl";
+import {ComponentWithForm} from "@/types/component";
 
-type Props = {
-  question: Question
-}
-const QuestionContentMultipleChoice = withForm(({question} : Props) => {
-
+const QuestionContentMultipleChoice = withForm(({contents,control} : ComponentWithForm) => {
   return(
     <div className={'w-full'}>
-      <div className={'grid grid-cols-2'}>
-        {question.contents.map((content: QuestionContent, index: number)=>{
-          return <FormControl key={index} type={'radio'} label={"True"} value={"true"} name={"radio_"+content.id} register={register} required />
-        })}
-      </div>
-
+      {
+        contents.map((content: QuestionContent, index: number)=> {
+          return <>
+            <p className={'my-5'}>{content.question}</p>
+            <div className={'grid grid-cols-2'}>
+            {
+              (content.values || []).map((value: QuestionContentValues) => {
+              return <FormControl control={control} key={"radio_" + value.value + index} type={'radio'}
+                      label={value.label} valueInput={value.value} name={"radio_" + content.id}
+                      required/>
+              })
+            }
+            </div>
+          </>
+        }
+        )
+      }
     </div>
   )
 })

@@ -3,6 +3,7 @@ import ListTemplate from "@/templates/ListTemplate";
 import axios from "axios";
 import {getCookie} from "cookies-next";
 import {Student} from "@/types/common";
+import {logout} from "@/util/help";
 
 export default function Home({student}: { student: Student }) {
   const lessons = student?.lessons
@@ -19,6 +20,15 @@ export async function getServerSideProps({req,res} : any) {
       "Authorization" : "Bearer "+getCookie('token',{req,res})
     }
   }).then((res)=>res)
+      .catch((e)=>{
+        logout({req,res})
+        return {
+          redirect: {
+            destination: '/login',
+            permanent: false,
+          },
+        }
+      })
   return {
     props: {
       student: data?.data?.data || null,
