@@ -1,43 +1,40 @@
-import {Question, QuestionContent} from "@/types/common";
+import {Practice, Question, QuestionContent} from "@/types/common";
 import QuestionContentMultipleChoice from "@/molecules/QuestionContentMultipleChoice";
+import DefaultLayout from "@/templates/DefaultLayout";
+import PracticeTimeoutTemplate from "@/templates/PracticeTimeoutTemplate";
+import axios from "axios";
+import {getCookie} from "cookies-next";
+import {logout} from "@/util/help";
 
-const data : QuestionContent = {
-  id: 1,
-  question: 'Test 1',
-  answer: 'Test',
-  values: [
-    {
-      label : "Test Answer 1",
-      value : "1",
-    },
-    {
-      label : "Test Answer 2",
-      value : "2",
-    },
-    {
-      label : "Test Answer 3",
-      value : "3",
-    },
-    {
-      label : "Test Answer 4",
-      value : "4",
-    },
-  ]
-}
-
-const question : Question = {
-  id : 1,
-  title: "Test",
-  type: "test",
-  description: "test",
-  contents: [data]
-}
-
-const Test = () => {
+const Test = ({practice} : {practice : Practice}) => {
+  console.log("practice",practice)
   return(
-    <>
-      <QuestionContentMultipleChoice question={question} />
-    </>
+    <DefaultLayout>
+      <PracticeTimeoutTemplate practice={practice} />
+    </DefaultLayout>
   )
 }
 export default Test
+
+export async function getServerSideProps({req,res,params} : any) {
+  const data : any = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/practice/1',{
+    headers: {
+      "Authorization" : "Bearer "+getCookie('token',{req,res})
+    }
+  }).then((res)=>res).catch((e)=>{
+    if(e.response.status === 401) {
+      logout({req,res})
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
+    }
+  })
+  return {
+    props: {
+      practice: data?.data?.data || null,
+    },
+  }
+}

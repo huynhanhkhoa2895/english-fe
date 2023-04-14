@@ -1,4 +1,5 @@
 import {twMerge} from "tailwind-merge";
+import {forwardRef, useImperativeHandle, useRef} from "react";
 
 type Props = {
   children : JSX.Element | string;
@@ -11,7 +12,16 @@ type Props = {
   variant?: 'primary' | 'secondary'
 }
 
-const Button = ({children, handleClick, className = '', type = 'button', size = 'lg', disabled = false, round = true, variant = 'primary'} : Props) => {
+const Button = forwardRef(({children, handleClick, className = '', type = 'button', size = 'lg', disabled = false, round = true, variant = 'primary'} : Props,ref) => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
+
+  useImperativeHandle(ref, ()=>({
+    click(){
+      if(buttonRef && buttonRef.current) {
+        buttonRef.current?.click()
+      }
+    }
+  }))
 
   const renderSize = () => {
     if(size === 'lg') {
@@ -30,7 +40,7 @@ const Button = ({children, handleClick, className = '', type = 'button', size = 
   }
 
   return(
-    <button onClick={handleClick}
+    <button ref={buttonRef} onClick={handleClick}
             className={twMerge('bg-primary text-white font-semibold',round ? 'rounded-xl' : '',disabled ? 'bg-gray-500' : '',renderVariant(),renderSize(),className)}
             type={type}
             disabled={disabled}
@@ -38,5 +48,5 @@ const Button = ({children, handleClick, className = '', type = 'button', size = 
       {children}
     </button>
   )
-}
+})
 export default Button
