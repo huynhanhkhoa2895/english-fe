@@ -2,7 +2,9 @@ import {QuestionContent} from "@/types/common";
 
 export type ComponentWithForm = {
   isSubmit : boolean,
-  dataPush : {[key : string] : string}[],
+  dataPush : any,
+  errors: any;
   isShowAnswer : boolean;
   control : any;
+  contents : QuestionContent[];
 }

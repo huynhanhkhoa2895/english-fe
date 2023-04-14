@@ -1,5 +1,6 @@
 import TableVocabulary from "@/molecules/TableVocabulary";
 import useVocabulary from "@/hooks/useVocabulary";
+import {Lesson} from "@/types/common";
 
 type Props = {
   lesson : Lesson

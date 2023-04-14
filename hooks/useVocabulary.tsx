@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {sampleSize} from 'lodash'
+import {Lesson, Vocabulary} from "@/types/common";
 const useVocabulary = (lesson : Lesson) => {
   const [listVocabulary,setListVocabulary] = useState<Vocabulary[]>(lesson?.vocabularies || [])
 

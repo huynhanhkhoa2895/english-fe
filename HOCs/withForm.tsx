@@ -9,7 +9,7 @@ import {ComponentWithForm} from "@/types/component";
 
 const withForm = (FieldsComponent: FC<ComponentWithForm>) => {
   // eslint-disable-next-line react/display-name
-  return ({ submitText, question }: {submitText? : string | JSX.Element, question}) => {
+  return ({ submitText, question }: {submitText? : string | JSX.Element, question: Question}) => {
     const {
       control,
       handleSubmit,
@@ -56,7 +56,7 @@ const withForm = (FieldsComponent: FC<ComponentWithForm>) => {
       setLoading(false)
     }
 
-    const onError = (e) => {
+    const onError = (e: any) => {
       console.log("onError",e)
 
     }

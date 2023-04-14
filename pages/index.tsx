@@ -15,7 +15,7 @@ export default function Home({student}: { student: Student }) {
 }
 
 export async function getServerSideProps({req,res} : any) {
-  const data = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/student/'+getCookie('userid',{req,res}),{
+  const data : any = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/student/'+getCookie('userid',{req,res}),{
     headers: {
       "Authorization" : "Bearer "+getCookie('token',{req,res})
     }

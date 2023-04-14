@@ -1,6 +1,7 @@
 import Mask from "@/molecules/Mask";
 import {useState} from "react";
 import Audio from "@/molecules/Audio";
+import {Vocabulary} from "@/types/common";
 
 type Props = {
   data : Vocabulary[]

@@ -9,6 +9,8 @@ const FormQuestion = ({type,question} : {type : string, question : Question}) =>
         return <QuestionContentTrueFalse question={question} />
       case "multiple_choice":
         return <QuestionContentMultipleChoice question={question} />
+      default:
+        return <></>
     }
   }
 
