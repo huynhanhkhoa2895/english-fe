@@ -6,21 +6,14 @@ import Button from "@/atoms/button";
 import ExcerciseResult from "@/molecules/ExcerciseResult";
 import {Result, Vocabulary} from "@/types/common";
 import { confirmAlert } from 'react-confirm-alert';
-import {useDispatch} from "react-redux";
 
 const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
-  const dispatch = useDispatch();
   const {listRandomVocabulary} = useVocabulary()
   const [step,setStep] = useState<number>(0)
   const [results,setResult] = useState<Result[]>([])
   const _vocabularies = listRandomVocabulary(vocabularies)
 
-  useEffect(() => {
-    return () => {
-      console.log("vao day")
-      // dispatch({type: setSelectedVocabularyAction.type, payload: []})
-    };
-  }, []);
+
 
 
   const handleFinish = () => {

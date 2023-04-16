@@ -13,6 +13,7 @@ export type Vocabulary = {
   vocabulary: string;
   translate?: string;
   transcript?: string;
+  parts_of_speech?: string;
   spelling?: string;
   example?: string;
   sound?: string;

@@ -4,6 +4,7 @@ import FormControl from "@/molecules/FormControl";
 import Mask from "@/molecules/Mask";
 import {Vocabulary} from "@/types/common";
 import dynamic from 'next/dynamic'
+import {useMemo} from "react";
 
 const Audio = dynamic(()=> import("@/molecules/Audio"))
 type Props = {
@@ -26,10 +27,14 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
     }
   }
 
+  const renderMask = useMemo(()=>{
+    return <Mask value={vocabulary.translate || ''} haveMask sound={vocabulary.sound || ''} />
+  },[])
+
   return(
       <form autoComplete={"off"} className={'grid grid-cols-1 lg:grid-cols-2 w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
         <div className={''}>
-          <Mask value={vocabulary.translate || ''} haveMask sound={vocabulary.sound} />
+          {renderMask}
         </div>
         <div>
           <FormControl control={control} name={'answer'} register={register} errors={errors} required autofocus />

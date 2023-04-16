@@ -22,7 +22,7 @@ const VocabularyTable = () => {
   const columns : any = [
     {
       name: 'Vocabulary',
-      selector: (row: Vocabulary) => row.vocabulary+' '+(row.transcript?`${row.transcript}`:''),
+      selector: (row: Vocabulary) => row.vocabulary+' '+(row.parts_of_speech?`(${row.parts_of_speech})`:''),
       sortable: true,
       sortField: 'vocabulary',
     },
