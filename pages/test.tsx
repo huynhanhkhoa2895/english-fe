@@ -1,5 +1,5 @@
 import {Practice, Question, QuestionContent} from "@/types/common";
-import QuestionContentMultipleChoice from "@/molecules/QuestionContentMultipleChoice";
+import QuestionContentMultipleChoice from "@/molecules/Question/QuestionContentMultipleChoice";
 import DefaultLayout from "@/templates/DefaultLayout";
 import PracticeTimeoutTemplate from "@/templates/PracticeTimeoutTemplate";
 import axios from "axios";
@@ -7,7 +7,6 @@ import {getCookie} from "cookies-next";
 import {logout} from "@/util/help";
 
 const Test = ({practice} : {practice : Practice}) => {
-  console.log("practice",practice)
   return(
     <DefaultLayout>
       <PracticeTimeoutTemplate practice={practice} />

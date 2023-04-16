@@ -9,14 +9,14 @@ import {setIndexDisplayAction} from "@/reducers/actions";
 const QuestionContentTimeOut = ({content} : {content : QuestionContent}) => {
   const indexDisplay = useSelector(selectIndexDisplay)
   const dispatch = useDispatch();
-  const setIndexDisplay = (index : any)=>dispatch(setIndexDisplayAction(index))
+  const setIndexDisplay = (index : any)=>dispatch({type: ''})
   const [totalResult,setTotalResult] = useState<Result[]>([])
 
   useEffect(()=>{
 
   },[])
 
-  const submitSuccess = (result,data) => {
+  const submitSuccess = (result : Result[],data : any) => {
     setIndexDisplay(indexDisplay+1)
     setTotalResult((totalResult)=>[...totalResult,...result])
   }

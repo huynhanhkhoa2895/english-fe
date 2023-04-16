@@ -7,9 +7,10 @@ type Props = {
   type?:string;
   autofocus?:boolean
   onChange: any;
+  disabled?: boolean;
 }
 
-const Input = ({className = '',name,type='text',autofocus = false,onChange} : Props) => {
+const Input = ({className = '',name,type='text',autofocus = false,onChange,disabled} : Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   useEffect(()=>{
     if(autofocus && inputRef.current) {
@@ -26,7 +27,7 @@ const Input = ({className = '',name,type='text',autofocus = false,onChange} : Pr
       type={type}
       className={'py-1 px-2 border border-gray-500 rounded-lg w-full '+className}
       onChange={onChange}
-
+      disabled={disabled}
     />
   )
 }

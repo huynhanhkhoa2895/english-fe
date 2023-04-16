@@ -4,10 +4,10 @@ import FormControl from "@/molecules/FormControl";
 import {ComponentWithForm} from "@/types/component";
 
 
-const QuestionValuesTimeOut = withForm(({datas,control,questionContent} : ComponentWithForm) => {
+const QuestionValuesTimeOut = withForm(({datas,control,questionContent} : any) => {
 
   return(
-    <div className={'w-full grid grid-cols-2'}>
+    <div className={'w-full grid grid-cols-1 lg:grid-cols-2'}>
       {
         datas.map((value: QuestionContentValues, index: number) => {
             return <FormControl

@@ -7,10 +7,10 @@ type Props = {
 }
 
 const LessonListVocabulary = ({lesson} : Props) => {
-  const list = useVocabulary(lesson)
+  const {listRandomVocabulary} = useVocabulary()
   return(
     <>
-      <TableVocabulary data={list} />
+      <TableVocabulary data={listRandomVocabulary(lesson.vocabularies)} />
     </>
   )
 }

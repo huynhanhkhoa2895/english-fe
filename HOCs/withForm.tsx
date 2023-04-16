@@ -16,9 +16,9 @@ type Props = {
   clickForSubmit?: boolean
 }
 
-const withForm = (FieldsComponent: FC<ComponentWithForm>) => {
+const withForm = (FieldsComponent: FC<any>) => {
   // eslint-disable-next-line react/display-name
-  return ({ submitText, datas, submitSuccess,isShowAnswerComponent,clickForSubmit,...rest }: Props) => {
+  return ({ submitText, datas, submitSuccess,isShowAnswerComponent,clickForSubmit,...rest }: any) => {
     const {
       control,
       handleSubmit,
@@ -86,9 +86,11 @@ const withForm = (FieldsComponent: FC<ComponentWithForm>) => {
                 <><FontAwesomeIcon icon={faList} width={15}/> Show Answer</>
             </Button>
           }
-          <Button ref={submitRef} type={'submit'} className={twMerge('flex gap-1 items-center',clickForSubmit ? 'hidden' : '')} round={false} size={'sm'}>
-            {submitText || <><FontAwesomeIcon icon={faCheck} width={15} /> Finish</>}
-          </Button>
+          {!isSubmit && <Button ref={submitRef} type={'submit'}
+                   className={twMerge('flex gap-1 items-center', clickForSubmit ? 'hidden' : '')} round={false}
+                   size={'sm'}>
+            {submitText || <><FontAwesomeIcon icon={faCheck} width={15}/> Finish</>}
+          </Button>}
         </div>
       </form>
     );

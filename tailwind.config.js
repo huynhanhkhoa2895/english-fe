@@ -16,7 +16,8 @@ module.exports = {
         green: '#30ae27',
         'dark-green': '#086e18',
         'dark-red': '#a90404',
-        red: '#ea3030'
+        red: '#ea3030',
+        'cyan': '#6dcfe7'
       }
     },
   },

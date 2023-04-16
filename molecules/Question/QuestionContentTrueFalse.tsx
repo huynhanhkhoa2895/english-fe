@@ -19,7 +19,7 @@ const QuestionContentTrueFalse = withForm(({
    control
  }: ComponentWithForm) => {
   return (
-    <>
+    <div className={'mt-5'}>
       {datas.map((content: QuestionContent, index: number) => {
         return <div key={index} className={'flex max-lg:flex-col justify-between items-center font-thin mb-2'}>
           <div className={'w-full'}>{index + 1}. {content.question}</div>
@@ -38,7 +38,7 @@ const QuestionContentTrueFalse = withForm(({
         </div>
       })}
 
-    </>
+    </div>
   )
 })
 export default QuestionContentTrueFalse

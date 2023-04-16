@@ -5,11 +5,12 @@ const practiceTimeoutState = {
   indexDisplay: 0
 }
 
-const practiceTimeoutReducer = createReducer(practiceTimeoutState, {
-  [setIndexDisplayAction]: (state, action) => {
-    state.indexDisplay = action.payload
-    return {...state}
-  }
+const practiceTimeoutReducer = createReducer(practiceTimeoutState, (builder)=>{
+  builder
+      .addCase('setIndexDisplayAction',(state,action: any)=>{
+        state.indexDisplay = action.payload
+        return {...state}
+      })
 })
 
 export default practiceTimeoutReducer;

@@ -14,8 +14,9 @@ export const callAPIPushResult = async (data : any) => {
     method: "POST",
     body: JSON.stringify({data}),
     headers: {
-      "Authorization": "Bearer "+getCookie("token")
+      "Authorization": "Bearer "+getCookie("token"),
+      "Accept": "application/json",
+      "Content-Type": "application/json"
     }
   }).catch((e)=>e)
-  console.log(result)
 }

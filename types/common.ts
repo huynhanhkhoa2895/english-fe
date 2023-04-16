@@ -12,6 +12,7 @@ export type Vocabulary = {
   id: string | number;
   vocabulary: string;
   translate?: string;
+  transcript?: string;
   spelling?: string;
   example?: string;
   sound?: string;
@@ -31,9 +32,16 @@ export type Practice = {
   level: string;
   type: string;
   instructions: string;
+  media: Media;
+  link_video: string;
   content: string;
   questions: Question[]
   createdAt?: string;
+}
+
+export type Media = {
+  url: string;
+  type: string;
 }
 
 export type Question = {
@@ -72,4 +80,9 @@ export type Student = {
   type: string;
   practices: Practice[];
   lessons: Lesson[]
+}
+
+export type PaginationData = {
+  data: Vocabulary[],
+  total: number
 }

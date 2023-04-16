@@ -1,12 +1,13 @@
 import {Question, QuestionContent, Result} from "@/types/common";
 import Accordion from "@/molecules/Accordion";
-import QuestionContentTrueFalse from "@/molecules/QuestionContentTrueFalse"
-import QuestionContentMultipleChoice from "@/molecules/QuestionContentMultipleChoice";
+import QuestionContentTrueFalse from "@/molecules/Question/QuestionContentTrueFalse"
+import QuestionContentMultipleChoice from "@/molecules/Question/QuestionContentMultipleChoice";
 import {callAPIPushResult} from "@/util/help";
+import {toast} from "react-toastify";
 
-const Question = ({type,question,level} : { question : Question, level : string, type : string }) => {
+const Index = ({type,question,level} : { question : Question, level : string, type : string }) => {
 
-  const submitSuccess = async (datas: QuestionContent[],data) => {
+  const submitSuccess = async (datas: QuestionContent[],data: any) => {
     const dataResult : Result[] = datas.map((content)=>({
       question_id: content.id,
       question_type: "question",
@@ -16,16 +17,18 @@ const Question = ({type,question,level} : { question : Question, level : string,
       result: data['radio_'+content.id] === content.answer.toLowerCase()
     }))
     const resultPush = await callAPIPushResult(dataResult).then((result)=>{
-
+      toast.success("Send answer success")
+    }).catch(()=>{
+      toast.error("Send answer fail")
     })
   }
 
   const RenderContent = () => {
     switch (question.type) {
       case "true_false":
-        return <QuestionContentTrueFalse datas={question.contents} submitSuccess={submitSuccess}/>
+        return <QuestionContentTrueFalse isShowAnswerComponent datas={question.contents} submitSuccess={submitSuccess}/>
       case "multiple_choice":
-        return <QuestionContentMultipleChoice datas={question.contents} submitSuccess={submitSuccess}/>
+        return <QuestionContentMultipleChoice isShowAnswerComponent datas={question.contents} submitSuccess={submitSuccess}/>
       default:
         return <></>
     }
@@ -39,4 +42,4 @@ const Question = ({type,question,level} : { question : Question, level : string,
     </div>
   </div>
 }
-export default Question
+export default Index

@@ -1,3 +1,6 @@
 import { createSelector } from 'reselect'
 
-export const selectIndexDisplay = state => state.indexDisplay
+export const selectIndexDisplay = (state: any) => state.root.indexDisplay
+export const selectVocabularySelected = (state: any) => {
+  return state.vocabulary.selectedVocabulary
+}

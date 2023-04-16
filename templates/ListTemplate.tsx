@@ -12,7 +12,7 @@ const ListTemplate = ({data,variant="lesson"} : Props) => {
   const RenderList: any = () => {
     let xhtml : JSX.Element[] = [];
     xhtml = data.map((data : Lesson | Practice)=>{
-      return <Box variant={variant} key={data.id} data={data} />
+      return <Box variant={variant || ''} key={data.id} data={data} />
     });
     return xhtml
   }

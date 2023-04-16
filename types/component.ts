@@ -10,3 +10,11 @@ export type ComponentWithForm = {
   submitSuccess?: any;
   clickForSubmit?: boolean;
 }
+
+export type TableRemote = {
+  total: number,
+  handlePerRowsChange?: any,
+  handlePageChange: any,
+  handleSort?: any,
+  handleRowsChange?: any
+} | null

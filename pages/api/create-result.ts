@@ -11,15 +11,16 @@ export default function handler(
     return fetch(process.env.NEXT_PUBLIC_APP_BE+"/api/result",{
       method: "POST",
       headers: {
-        "Authorization": "Bearer "+getCookie("token",{req,res})
+        "Authorization": "Bearer "+getCookie("token",{req,res}),
+        "Accept": "application/json",
+        "Content-Type": "application/json"
       },
-      body: req.body
+      body: JSON.stringify(req.body)
     })
-    .then((res)=>res.json)
+    .then((res)=>res.json())
     .then((result)=>{
        return res.status(200).json({ result });
     }).catch((error)=>{
-      console.log("error",error)
       return res.status(500).json({ error });
     })
   } else {
