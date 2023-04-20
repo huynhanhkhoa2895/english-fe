@@ -10,7 +10,6 @@ const Index = ({type,question,level} : { question : Question, level : string, ty
   const submitSuccess = async (datas: QuestionContent[],data: any) => {
     const dataResult : Result[] = datas.map((content)=>({
       question_id: content.id,
-      question_type: "question",
       question: content.question,
       answer: data['radio_'+content.id] || "",
       correct_answer: content.answer,

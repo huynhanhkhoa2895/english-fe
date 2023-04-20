@@ -1,6 +1,7 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import LessonDetailTemplate from "@/templates/LessonDetailTemplate";
 import {Lesson} from '@/types/common'
+import {getCookie} from "cookies-next";
 const Lesson = ({lesson} : {lesson : Lesson}) => {
   return(
     <DefaultLayout>
@@ -10,8 +11,12 @@ const Lesson = ({lesson} : {lesson : Lesson}) => {
 }
 export default Lesson
 
-export async function getServerSideProps(context : any) {
-  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+context.params.id).then((res)=>res.json()).catch((e)=>{
+export async function getServerSideProps({req,res,params} : any) {
+  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+params.id,{
+    headers: {
+      "Authorization" : "Bearer "+getCookie('token',{req,res})
+    }
+  }).then((res)=>res.json()).catch((e)=>{
     console.log(e)
   })
 

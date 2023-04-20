@@ -71,7 +71,6 @@ export type Result = {
   answer: string;
   correct_answer: string;
   result : boolean;
-  question_type: 'vocabulary' | 'question'
 }
 
 export type Student = {

@@ -21,7 +21,7 @@ export async function getServerSideProps({req,res,params} : any) {
       "Authorization" : "Bearer "+getCookie('token',{req,res})
     }
   }).then((res)=>res).catch((e)=>{
-    if(e.response.status === 401) {
+    if(e?.response?.status === 401) {
       logout({req,res})
       return {
         redirect: {

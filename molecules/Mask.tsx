@@ -20,7 +20,7 @@ const Mask = ({value = '', haveMask = false,sound} : Props) => {
     <div className={'flex items-center gap-3 w-full cursor-pointer'}>
       <div className={`flex-1 ${isOpen ? '' : 'bg-black'}`} onClick={()=>setIsOpen(!isOpen)}>{value}</div>
       {/*<div className={'cursor-pointer'} ><FontAwesomeIcon icon={faEye} width={15} onClick={()=>setIsOpen(!isOpen)}/></div>*/}
-      {hasWindow && <div><Audio src={sound || ''} autoplay={true}/></div>}
+      {hasWindow && sound && <div><Audio src={sound || ''} autoplay={true}/></div>}
     </div>
   )
 }

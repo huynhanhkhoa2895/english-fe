@@ -25,7 +25,7 @@ const Accordion = ({list,classNameItem = ''} : Props) => {
                               transitionDuration: `0.2s`,
                             }}
                         >
-                          <div className={twMerge('p-2 border rounded-bl-2xl rounded-br-2xl border-gray-500',classNameItem)}>{item.content}</div>
+                          <div className={twMerge('p-2 border rounded-bl-2xl rounded-br-2xl border-gray-500 overflow-auto',classNameItem)}>{item.content}</div>
                         </HeadlessAccordion.Panel>
                       </>
                   )

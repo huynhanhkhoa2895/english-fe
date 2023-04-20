@@ -8,7 +8,7 @@ export default function handler(
     res: NextApiResponse<any>
 ) {
   if(req.method === "POST") {
-    return fetch(process.env.NEXT_PUBLIC_APP_BE+"/api/result",{
+    return fetch(process.env.NEXT_PUBLIC_APP_BE+"/api/receive",{
       method: "POST",
       headers: {
         "Authorization": "Bearer "+getCookie("token",{req,res}),

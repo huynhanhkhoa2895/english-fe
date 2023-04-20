@@ -22,7 +22,6 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
         result: data?.answer === vocabulary.vocabulary,
         answer: data?.answer,
         correct_answer: vocabulary.vocabulary,
-        question_type: 'vocabulary'
       })
     }
   }
