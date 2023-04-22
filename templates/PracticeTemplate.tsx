@@ -4,8 +4,11 @@ import Markdown from "@/molecules/Markdown";
 import Index from "@/molecules/Question"
 import Video from "@/atoms/video";
 import Audio from "@/molecules/Audio";
+import {useRef} from "react";
+import useReading from "@/hooks/useReading";
 const PracticeTemplate = ({practice} : {practice : Practice}) => {
-
+  const refContent = useRef<HTMLDivElement | null>(null);
+  useReading(refContent)
   const renderTypeTitle = () => {
     switch (practice.type){
       case "reading":
@@ -51,6 +54,8 @@ const PracticeTemplate = ({practice} : {practice : Practice}) => {
                 {
                   title: renderTypeTitle(),
                   content: <div
+                      ref={refContent}
+                      id={practice.type === 'reading' ? 'content-reading' : ''}
                       dangerouslySetInnerHTML={{__html: practice.content || ''}}
                   />
                 }
