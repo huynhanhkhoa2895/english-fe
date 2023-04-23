@@ -30,7 +30,7 @@ const PracticeTemplate = ({practice} : {practice : Practice}) => {
   }
 
   const RenderMedia = () => {
-    if(practice.media.type.search("audio") > -1) {
+    if(practice?.media?.type?.search("audio") > -1) {
       return <Audio src={practice.media.url} icon={false} />
     }
     return null

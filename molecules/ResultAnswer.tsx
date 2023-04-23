@@ -6,12 +6,13 @@ type Props = {
   status? : boolean|null;
   children: JSX.Element;
   className?: string;
+  classNameChildren?: string;
   isShowAnswer?:boolean | null;
   value?: string;
   answer?: string;
 }
 
-const ResultAnswer = ({status = null,children,className = '',isShowAnswer = null,value,answer} : Props) => {
+const ResultAnswer = ({status = null,children,className = '',classNameChildren = '',isShowAnswer = null,value,answer} : Props) => {
 
   const renderStatus = () => {
 
@@ -27,8 +28,8 @@ const ResultAnswer = ({status = null,children,className = '',isShowAnswer = null
 
   return(
       <>
-        <div className={twMerge('p-1 lg:p-2 flex gap-3', renderStatus(),className)}>
-          <div>
+        <div className={twMerge(renderStatus(),className)}>
+          <div className={twMerge(classNameChildren)}>
             {
               children
             }

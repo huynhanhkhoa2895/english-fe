@@ -68,6 +68,7 @@ export type QuestionContentValues = {
 
 export type Result = {
   question : string;
+  question_type : string;
   answer: string;
   correct_answer: string;
   result : boolean;

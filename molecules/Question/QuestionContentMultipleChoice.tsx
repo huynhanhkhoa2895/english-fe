@@ -17,17 +17,18 @@ const QuestionContentMultipleChoice = withForm(({datas, control, dataPush, isSho
                   (content.values || []).map((value: QuestionContentValues) => {
                     return (
                     <ResultAnswer
-                        key={"radio_" + value.value + index}
+                        key={"question_" + value.value + index}
                         value={value.value}
                         answer={content.answer}
                         isShowAnswer={isShowAnswer || null}
-                        status={dataPush && dataPush["radio_" + content.id] === value.value ? dataPush["radio_" + content.id] === content.answer  : null}>
+                        className={'p-1 lg:p-2 flex gap-3'}
+                        status={dataPush && dataPush["question_" + content.id] === value.value ? dataPush["question_" + content.id] === content.answer  : null}>
                       <FormControl
                           control={control}
                           type={'radio'}
                           label={value.label}
                           valueInput={value.value}
-                          name={"radio_" + content.id}
+                          name={"question_" + content.id}
                           disabled={isSubmit}
                           required
                       />
