@@ -21,9 +21,9 @@ const QuestionContentTrueFalse = withForm(({
             <ResultAnswer className={'p-1 lg:p-2 flex gap-3'} status={isSubmit ? (dataPush['question_' + content.id] === content.answer.toLowerCase()) : null}>
               <div className={'flex gap-3 w-full'}>
                 <FormControl control={control} type={'radio'} label={"True"} valueInput={"true"}
-                             name={"question_" + content.id} required/>
+                             name={"question_" + content.id} required disabled={isSubmit} />
                 <FormControl control={control} type={'radio'} label={"False"} valueInput={"false"}
-                             name={"question_" + content.id} required/>
+                             name={"question_" + content.id} required disabled={isSubmit}/>
               </div>
             </ResultAnswer>
             {isShowAnswer && <div

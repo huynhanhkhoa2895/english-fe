@@ -17,16 +17,15 @@ const QuestionContentFillIn = withForm(({
  dataPush,
  isShowAnswer,
  isSubmit,
- setValue,
  control
 }: ComponentWithForm) => {
   const [answers,setAnswer] = useState<Answer[]>([]);
   const [chooseAnswer,setChooseAnswer] = useState<string | null>(null);
-  const [questions,setQuestions] = useState([]);
+  const [questions,setQuestions] = useState<any>([]);
 
   useEffect(()=>{
     const listQuestion = [];
-    const listAnswer = [];
+    const listAnswer : any = [];
     for(const item of datas) {
       listQuestion.push(item.question);
       listAnswer.push({answer : item.answer, display : true});
@@ -73,12 +72,14 @@ const QuestionContentFillIn = withForm(({
 
     <div className={'flex gap-5 flex-col w-full'}>
 
-      {questions.map((question,index : number)=> <div className={'flex items-center justify-between w-full relative'} key={index}>
+      {questions && questions.map((question : any,index : number)=> <div className={'flex items-center justify-between w-full relative'} key={index}>
         <div className={'w-full'}>{question}</div>
         <ResultAnswer className={'w-full flex justify-around items-center'} classNameChildren={'w-full max-w-[150px] xl:max-w-[250px]'} status={isSubmit ? (dataPush['question_' + datas[index].id] === datas[index].answer.toLowerCase()) : null} key={index}>
-          <FillInItemInput isSubmit={isSubmit} valueChoose={chooseAnswer} name={'question_'+datas[index].id} control={control} onChoose={handleQuestionChoose}  />
-          {isShowAnswer && <div
-            className={twMerge('capitalize text-sm flex-1 ')}>{datas[index].answer}</div>}
+          <>
+            <FillInItemInput isSubmit={isSubmit ||  false} valueChoose={chooseAnswer} name={'question_'+datas[index].id} control={control} onChoose={handleQuestionChoose}  />
+            {isShowAnswer && <div
+              className={twMerge('capitalize text-sm flex-1 ')}>{datas[index].answer}</div>}
+          </>
         </ResultAnswer>
 
       </div>)}

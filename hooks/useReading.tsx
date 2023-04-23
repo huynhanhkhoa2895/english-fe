@@ -16,16 +16,16 @@ const useReading = (refReading: any) => {
     }
   },[])
 
-  function handleTouch(e){
-    console.log("selection",window.getSelection().toString())
-    console.log("selection2",document.getSelection().toString())
+  function handleTouch(e : any){
+    // console.log("selection",window.getSelection().toString())
+    // console.log("selection2",document.getSelection().toString())
   }
 
   const handleMouseUp = (e: MouseEvent) => {
     const ele : HTMLDivElement = refReading.current
     console.log("handleMouseUp")
     if(document) {
-      const textSelect = document.getSelection().toString();
+      const textSelect = document?.getSelection()?.toString();
       if(textSelect && textSelect !== '') {
         alert(textSelect)
       }

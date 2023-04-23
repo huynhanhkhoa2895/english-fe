@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-circle': 'spin 1s linear infinite'
+      },
       colors: {
         primary: "#291D97",
         grey: '#ccc',
