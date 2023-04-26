@@ -23,9 +23,9 @@ const Video = forwardRef(({src,playing} : Props,ref) => {
   })
 
   return(
-      <div className={'relative w-full max-w-[500px] mx-auto'}>
+      <div className={'relative w-full max-w-full xl:max-w-[500px] mx-auto'}>
         {isWindow && <ReactPlayer
-            // className={'absolute'}
+            className={'!w-full'}
             ref={videoRef}
             url={src}
             playing={playing}

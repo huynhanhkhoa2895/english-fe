@@ -9,8 +9,8 @@ type Props = {
 
 const Radio = ({name, required = false, label, value,onChange,disabled = false} : Props) => {
   return (
-      <label className={'flex gap-1 items-center'} id={'radio-'+name}>
-        <input type="radio" name={name} value={value} required={required} onChange={onChange} disabled={disabled} />
+      <label className={'xl:flex xl:gap-1 xl:items-center'} id={'radio-'+name}>
+        <input className={'max-xl:mr-2'} type="radio" name={name} value={value} required={required} onChange={onChange} disabled={disabled} />
         <span>{label}</span>
       </label>
   )
