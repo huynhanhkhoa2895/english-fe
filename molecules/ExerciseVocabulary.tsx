@@ -66,8 +66,6 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
       return [...results,result]
     })
     setStep((step: number)=>{
-      console.log("setStep",step)
-
       return step+1;
     })
   }
@@ -76,8 +74,6 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
     setStep(0)
     setResult([])
   }
-
-  console.log("_vocabularies",_vocabularies)
 
   const renderItem = useMemo(()=>{
     return (

@@ -12,7 +12,7 @@ export const logout = ({ req, res } : any) => {
 export const callAPIPushResult = async (data : any) => {
   const result = await fetch("/api/create-result",{
     method: "POST",
-    body: JSON.stringify({data}),
+    body: JSON.stringify(data),
     headers: {
       "Authorization": "Bearer "+getCookie("token"),
       "Accept": "application/json",

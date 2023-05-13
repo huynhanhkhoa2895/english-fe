@@ -23,7 +23,7 @@ const PracticeTemplate = ({practice} : {practice : Practice}) => {
   const RenderQuestion = () => {
     const list : AccordionContent[] = practice.questions.map((question: Question, index: number)=>({
       title: "Task "+(index+1),
-      content: <Index type={practice.type} level={practice.level} question={question} />
+      content: <Index type={practice.type} level={practice.level} question={question} practice_id={practice.id} />
     }))
 
     return  <Accordion classNameItem={'p-0 bg-gray-500'} list={list} />

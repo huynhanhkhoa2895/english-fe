@@ -17,6 +17,7 @@ export type Vocabulary = {
   spelling?: string;
   example?: string;
   sound?: string;
+  definition?: string;
   category?: Category;
 }
 
@@ -68,7 +69,6 @@ export type QuestionContentValues = {
 
 export type Result = {
   question : string;
-  question_type : string;
   answer: string;
   correct_answer: string;
   result : boolean;

@@ -7,7 +7,7 @@ import QuestionContentFillIn from "@/molecules/Question/QuestionContentFillIn";
 import Loading from "@/atoms/loading";
 import {useMemo, useState} from "react";
 
-const Index = ({type,question,level} : { question : Question, level : string, type : string }) => {
+const Index = ({type,question,level,practice_id} : { question : Question, level : string, type : string, practice_id: string | number }) => {
   const [loading,setLoading] = useState<boolean>(false)
 
   const submitSuccess = async (datas: QuestionContent[],data: any) => {
@@ -15,13 +15,17 @@ const Index = ({type,question,level} : { question : Question, level : string, ty
     try{
       const dataResult : Result[] = datas.map((content)=>({
         question: content.question,
-        question_title: question.title,
-        question_type: question.type,
         answer: data['question_'+content.id] || "",
         correct_answer: content.answer,
         result: (data['question_'+content.id] || '').toLowerCase() === content.answer.toLowerCase()
       }))
-      const resultPush = await callAPIPushResult(dataResult).then((result)=>{
+      const body = {
+        practice_id,
+        question_title: question.title,
+        question_type: question.type,
+        data: dataResult
+      }
+      const resultPush = await callAPIPushResult(body).then((result)=>{
         toast.success("Send answer success")
       }).catch(()=>{
         toast.error("Send answer fail")

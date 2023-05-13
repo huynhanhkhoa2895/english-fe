@@ -2,6 +2,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFaceSadTear, faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 import Button from "@/atoms/button";
 import {Result} from "@/types/common";
+import Audio from "@/molecules/Audio";
 
 const ExcerciseResult = ({results,reset} : {results : Result[],reset : Function}) => {
   const RenderTableResult = () => {
@@ -17,7 +18,13 @@ const ExcerciseResult = ({results,reset} : {results : Result[],reset : Function}
           <tbody>
           {
             results.map((result: Result,index : number)=><tr key={index}>
-              <td className={'border border-slate-300 p-2'}>{result?.question || ''}</td>
+              <td className={'border border-slate-300 p-2'}>
+                <div className={'flex justify-between'}>
+                  <span>{result?.question || ''}</span>
+                  <Audio src={result.question+'.mp3'} />
+                </div>
+
+              </td>
               <td className={'border border-slate-300 p-2'}>{result?.answer || ''}</td>
               <td className={'border border-slate-300 p-2'}><FontAwesomeIcon icon={result?.result ? faThumbsUp : faFaceSadTear} width={15} color={result?.result ? 'green' : 'red'} /></td>
             </tr>)
