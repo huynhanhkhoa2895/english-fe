@@ -18,10 +18,10 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
   const onSubmit = (data : any) => {
     if(data?.answer){
       handleResult({
-        question : vocabulary.vocabulary.toLowerCase(),
-        result: data?.answer.toLowerCase() === vocabulary.vocabulary.toLowerCase(),
+        question : vocabulary.vocabulary.trim().toLowerCase(),
+        result: data?.answer.trim().toLowerCase() === vocabulary.vocabulary.trim().toLowerCase(),
         answer: data?.answer,
-        correct_answer: vocabulary.vocabulary,
+        correct_answer: vocabulary.vocabulary.trim().toLowerCase(),
       })
     }
   }

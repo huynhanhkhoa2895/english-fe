@@ -71,6 +71,9 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
   }
 
   const reset = () => {
+    const resultsFail = results.filter((item: Result)=>!item.result).map((item: Result)=>item.question)
+    const vocabularies = _vocabularies.filter((vocabulary: Vocabulary)=>resultsFail.includes(vocabulary.vocabulary))
+    setVocabulary(sampleSize(vocabularies,vocabularies.length))
     setStep(0)
     setResult([])
   }

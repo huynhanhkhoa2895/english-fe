@@ -17,11 +17,11 @@ const ExcerciseResult = ({results,reset} : {results : Result[],reset : Function}
           </thead>
           <tbody>
           {
-            results.map((result: Result,index : number)=><tr key={index}>
+            results.map((result: Result,index : number)=><tr key={index+result.question}>
               <td className={'border border-slate-300 p-2'}>
                 <div className={'flex justify-between'}>
                   <span>{result?.question || ''}</span>
-                  <Audio src={result.question+'.mp3'} />
+                  <Audio src={result.question.trim()+'.mp3'} />
                 </div>
 
               </td>
