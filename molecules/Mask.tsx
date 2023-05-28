@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react";
 import Audio from "@/molecules/Audio";
+import Markdown from "@/molecules/Markdown";
 
 type Props = {
   value : string
@@ -18,7 +19,9 @@ const Mask = ({value = '', haveMask = false,sound} : Props) => {
 
   return(
     <div className={'flex items-center gap-3 w-full cursor-pointer'}>
-      <div className={`flex-1 ${isOpen ? '' : 'bg-black'}`} onClick={()=>setIsOpen(!isOpen)}>{value}</div>
+      <div className={`flex-1 ${isOpen ? '' : 'bg-black'} whitespace-pre-line`} onClick={()=>setIsOpen(!isOpen)}>
+        <Markdown content={value || ''} />
+      </div>
       {hasWindow && sound && <div><Audio src={sound || ''} autoplay={true}/></div>}
     </div>
   )
