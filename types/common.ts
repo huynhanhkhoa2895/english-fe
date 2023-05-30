@@ -87,3 +87,4 @@ export type PaginationData = {
   data: Vocabulary[],
   total: number
 }
+

@@ -1,4 +1,4 @@
-import ExerciseVocabulary from "@/molecules/ExerciseVocabulary";
+import ExerciseVocabulary from "@/molecules/Exercise/ExerciseVocabulary";
 import {useDispatch, useSelector} from "react-redux";
 import {selectVocabularySelected} from "@/reducers/select";
 import DefaultLayout from "@/templates/DefaultLayout";
@@ -27,10 +27,11 @@ const Exercise = () => {
   }, [hasWindow]);
   return(
       <DefaultLayout>
+        <></>
         {
-          selectedVocabulary && selectedVocabulary.length > 0 && (
-                <ExerciseVocabulary vocabularies={selectedVocabulary || []} />
-            )
+          // selectedVocabulary && selectedVocabulary.length > 0 && (
+          //       <ExerciseVocabulary vocabularies={selectedVocabulary || []} />
+          //   )
         }
       </DefaultLayout>
 

@@ -1,17 +1,16 @@
-import {useState, Fragment, useEffect, memo, useMemo} from "react";
+import {useState, Fragment, useEffect, memo, useMemo, forwardRef, useImperativeHandle} from "react";
 import Progress from "@/atoms/progress";
 import Button from "@/atoms/button";
-import ExcerciseResult from "@/molecules/ExcerciseResult";
 import {Result, Vocabulary} from "@/types/common";
 import { confirmAlert } from 'react-confirm-alert';
 import dynamic from "next/dynamic";
 import {sampleSize} from 'lodash'
 
-const ExerciseItemVocabulary = dynamic(()=>import("@/molecules/ExerciseItemVocabulary"),{ssr : false})
+const ExerciseInputVocabulary = dynamic(()=>import("@/molecules/Exercise/ExerciseInputVocabulary"),{ssr : false})
 
-const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
-  const [step,setStep] = useState<number>(0)
-  const [results,setResult] = useState<Result[]>([])
+const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handleResult} : {vocabularies : Vocabulary[],step : number,setStep : any,results : Result[],handleResult : any},ref) => {
+
+
   const [_vocabularies,setVocabulary] = useState<Vocabulary[]>([])
   const [displayItem,setDisplayItem] = useState<boolean>(false)
 
@@ -26,6 +25,14 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
     }
   },[])
 
+  useImperativeHandle(ref, () => {
+    return {
+      handleReset(){
+        reset()
+      }
+    };
+  });
+
   const handleFinish = () => {
     confirmAlert({
       title: 'Do you want give up ?',
@@ -34,22 +41,20 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
         {
           label: 'Yes',
           onClick: () => {
-            setStep(_vocabularies.length)
-            setResult((results: Result[])=>{
-              let arr : Result[] = results;
-              for(let i = step;i < _vocabularies.length;i++){
-                const vocabulary = _vocabularies[i]
-                arr = [...arr,...[
-                  ({
-                    question : vocabulary.vocabulary,
-                    result: false,
-                    answer: '',
-                    correct_answer: vocabulary.vocabulary,
-                  } as Result)
-                ]]
-              }
-              return arr
-            })
+            // setStep(_vocabularies.length)
+            // let arr : Result[] = results;
+            // for(let i = step;i < _vocabularies.length;i++){
+            //   const vocabulary = _vocabularies[i]
+            //   arr = [...arr,...[
+            //     ({
+            //       question : vocabulary.vocabulary,
+            //       result: false,
+            //       answer: '',
+            //       correct_answer: vocabulary.vocabulary,
+            //     } as Result)
+            //   ]]
+            // }
+            // handleResult(arr)
           }
         },
         {
@@ -61,10 +66,8 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
 
   }
 
-  const handleResult = (result : Result) => {
-    setResult((results: Result[])=>{
-      return [...results,result]
-    })
+  const clickResult = (result : Result) => {
+    handleResult([...results, result])
     setStep((step: number)=>{
       return step+1;
     })
@@ -75,22 +78,21 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
     const vocabularies = _vocabularies.filter((vocabulary: Vocabulary)=>resultsFail.includes(vocabulary.vocabulary))
     setVocabulary(sampleSize(vocabularies,vocabularies.length))
     setStep(0)
-    setResult([])
+    handleResult([])
   }
 
-  const renderItem = useMemo(()=>{
+  const renderInputExcercise = useMemo(()=>{
     return (
         <>
           {
               displayItem && step <= _vocabularies.length - 1 && <>
                 {_vocabularies.map((vocabulary: Vocabulary, index: number) => <Fragment key={vocabulary.id}>
                   {step === index && <div className={'pb-5'} >
-                    <ExerciseItemVocabulary key={vocabulary.id} vocabulary={vocabulary} handleResult={handleResult} />
+                    <ExerciseInputVocabulary key={vocabulary.id} vocabulary={vocabulary} handleResult={clickResult} />
                   </div>}
                 </Fragment>)}
               <Button className={'bg-amber-600 w-full'} handleClick={handleFinish}>Give up</Button>
             </>
-
           }
 
         </>
@@ -98,13 +100,10 @@ const ExerciseVocabulary = ({vocabularies} : {vocabularies : Vocabulary[]}) => {
   },[displayItem,step])
 
   return <>
-      <Progress className={'mb-5'} maxValue={_vocabularies.length} currentValue={step} />
-      {renderItem}
-      {
-          step > _vocabularies.length - 1 && <ExcerciseResult results={results} reset={reset} />
-      }
+
+      {renderInputExcercise}
     </>
 
-}
+})
 
 export default ExerciseVocabulary

@@ -1,30 +1,37 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import LessonExcersiseTemplate from "@/templates/LessonExcersiseTemplate";
-import {Lesson} from "@/types/common";
 import {getCookie} from "cookies-next";
+import {logout} from "@/util/help";
 
-const Excercise = ({lesson} : {lesson : Lesson}) => {
+const Excercise = ({data,type} : {data: any,type : string}) => {
   return(
     <DefaultLayout>
-      {lesson && <LessonExcersiseTemplate lesson={lesson}/>}
+      {data && <LessonExcersiseTemplate data={data} type={type}/>}
     </DefaultLayout>
   )
 }
 export default Excercise
 
-export async function getServerSideProps({req,res,params} : any) {
-  const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+params.id,{
+export async function getServerSideProps({req,res,params,query} : any) {
+  const handleError = () => {
+    logout({req, res})
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login"
+      }
+    }
+  }
+  const data =  await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/'+params.id+(query?.type === 'timeout' ? '?type=timeout' : ''),{
     headers: {
       "Authorization" : "Bearer "+getCookie('token',{req,res})
     }
-  }).then((res)=>res.json()).catch((e)=>{
-    console.log(e)
-  })
-
+  }).then((res)=>res.json()).catch((e)=>handleError())
 
   return {
     props: {
-      lesson: data?.data || null,
+      data: (query?.type === "timeout" ? data?.data : data?.data?.vocabularies) || null,
+      type: query?.type || null,
     },
   }
 }

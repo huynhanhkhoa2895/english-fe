@@ -16,22 +16,23 @@ export default function Home({student}: { student: Student }) {
 }
 
 export async function getServerSideProps({req,res} : any) {
-  // const data : any = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/student/'+getCookie('userid',{req,res}),{
-  //   headers: {
-  //     "Authorization" : "Bearer "+getCookie('token',{req,res})
-  //   }
-  // }).then((res)=>res)
-  //     .catch((e)=>{
-  //       if(e?.response?.status === 401) {
-  //         logout({req,res})
-  //         return {
-  //           redirect: {
-  //             destination: '/login',
-  //             permanent: false,
-  //           },
-  //         }
-  //       }
-  //     })
+  const data : any = await axios.get(process.env.NEXT_PUBLIC_APP_BE+'/api/student/'+getCookie('userid',{req,res}),{
+    headers: {
+      "Authorization" : "Bearer "+getCookie('token',{req,res})
+    }
+  }).then((res)=>res)
+      .catch((e)=>{
+        console.log("e",e)
+        if(e?.response?.status === 401) {
+          logout({req,res})
+          return {
+            redirect: {
+              destination: '/login',
+              permanent: false,
+            },
+          }
+        }
+      })
   return {
     props: {},
   }

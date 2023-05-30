@@ -1,4 +1,4 @@
-import {QuestionContent} from "@/types/common";
+import {QuestionContent, Vocabulary} from "@/types/common";
 
 export type ComponentWithForm = {
   isSubmit?: boolean,
@@ -18,3 +18,8 @@ export type TableRemote = {
   handleSort?: any,
   handleRowsChange?: any
 } | null
+
+export type QuestionTimeoutType = {
+  question: Vocabulary,
+  values: Vocabulary[]
+}

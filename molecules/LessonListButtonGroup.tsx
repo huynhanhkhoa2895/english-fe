@@ -14,9 +14,14 @@ const LessonListButtonGroup = ({lesson, className} : Props) => {
         <p><span className={'font-bold'}>Total:</span> {lesson.vocabularies.length || 0}</p>
       </div>
       <div>
-        <Link href={'/exercise/'+lesson?.id} >
+        <Link className={'mr-2'} href={'/exercise/'+lesson?.id} >
           <Button>
-            Do exercise
+            Exercise Input
+          </Button>
+        </Link>
+        <Link href={'/exercise/'+lesson?.id+'?type=timeout'} >
+          <Button>
+            Exercise Timeout
           </Button>
         </Link>
       </div>

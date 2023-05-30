@@ -12,7 +12,7 @@ type Props = {
   handleResult: any;
 }
 
-const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
+const ExerciseInputVocabulary = ({vocabulary,handleResult} : Props) => {
   const { register, handleSubmit, watch, formState: { errors }, control } = useForm();
 
   const onSubmit = (data : any) => {
@@ -44,4 +44,4 @@ const ExerciseItemVocabulary = ({vocabulary,handleResult} : Props) => {
       </form>
   )
 }
-export default ExerciseItemVocabulary
+export default ExerciseInputVocabulary
