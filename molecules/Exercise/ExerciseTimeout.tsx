@@ -9,11 +9,12 @@ const ExerciseTimeout = ({data,handleResult,setStep,step,results}:{data : any,ha
   const [timeout,setTimeout] = useState(0);
   const refTimeout = useRef<any>(null);
   const refTimeoutNumber = useRef<number>(0)
-  const itemRef = useRef<any>(null)
+  const [_date,setData] = useState<any>([])
+
   useEffect(()=>{
     if (window){
       setIsFirstLoad(false)
-
+      setData(sampleSize(data,data.length))
     }
     return () => {
       refTimeout && clearInterval(refTimeout.current)

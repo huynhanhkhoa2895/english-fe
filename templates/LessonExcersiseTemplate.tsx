@@ -25,7 +25,7 @@ const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
     <div className={'max-w-[1440px] mx-auto'}>
       <Progress className={'mb-5'} maxValue={data.length} currentValue={step} />
       {
-          type === "timeout" ? <ExerciseTimeout results={results} data={sampleSize(data,data.length)} step={step} setStep={setStep} handleResult={handleResult} /> :
+          type === "timeout" ? <ExerciseTimeout results={results} data={data} step={step} setStep={setStep} handleResult={handleResult} /> :
               <ExerciseVocabulary
                 ref={ref}
                 step={step}

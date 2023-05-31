@@ -32,7 +32,7 @@ const ExerciseItemTimeout = ({content,handleResult,setStep,results,step} : {cont
         {!isFirstLoad && (
             <div className={twMerge('transition-all duration-300', 'opacity-100 visible')}>
               <div className={'text-[36px] text-center'}>
-                {content.question.vocabulary}
+                {content.question.vocabulary} ({content.question.parts_of_speech})
                 <div><Audio src={content.question.vocabulary+'.mp3' || ''} autoplay={true}/></div>
               </div>
               <div className={'border-t border-grey-500 py-10'}>
