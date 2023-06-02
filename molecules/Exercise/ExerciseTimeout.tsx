@@ -31,7 +31,6 @@ const ExerciseTimeout = ({data,handleResult,setStep,step,results}:{data : any,ha
         setTimeout(refTimeoutNumber.current)
       }else if(refTimeoutNumber.current === 5){
         const content = data[step];
-        console.log("step",step)
         if(content){
           handleResult([...results,...[{
             question : content.question.vocabulary.trim().toLowerCase(),
@@ -55,7 +54,10 @@ const ExerciseTimeout = ({data,handleResult,setStep,step,results}:{data : any,ha
             !isFirstLoad && (
                 <div className={'w-full'}>
 
-                  <Progress className={'mb-5'} maxValue={5} currentValue={timeout} displayNumber />
+                  {
+                      step <= data.length - 1 && <Progress className={'mb-5'} maxValue={5} currentValue={timeout} displayNumber />
+                  }
+
                   {
                     data.map((content: QuestionTimeoutType, index: number) => (
                         step === index &&  <ExerciseItemTimeout setStep={setStep} step={step} key={index} content={content} handleResult={handleResult} results={results} />

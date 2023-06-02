@@ -8,10 +8,12 @@ import Progress from "@/atoms/progress";
 
 const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
   const [results,setResult] = useState<Result[]>([])
+  const [_data,setData] = useState<any>(data)
   const [step,setStep] = useState<number>(0)
   const ref = useRef<any>()
-
+  const refOriginData = useRef<any>(data)
   const handleResult = (results : Result[]) => {
+    console.log("results",results)
     setResult(()=>results)
   }
 
@@ -21,21 +23,30 @@ const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
     }
   }
 
+  const handleSetData = (data: any) => {
+    if(data && data.length > 0){
+      setData(data)
+    }else{
+      setData(refOriginData.current)
+    }
+  }
+
   return(
     <div className={'max-w-[1440px] mx-auto'}>
-      <Progress className={'mb-5'} maxValue={data.length} currentValue={step} />
+      <Progress className={'mb-5'} maxValue={_data.length} currentValue={step} />
       {
-          type === "timeout" ? <ExerciseTimeout results={results} data={data} step={step} setStep={setStep} handleResult={handleResult} /> :
+          type === "timeout" ? <ExerciseTimeout results={results} data={_data} step={step} setStep={setStep} handleResult={handleResult} /> :
               <ExerciseVocabulary
                 ref={ref}
                 step={step}
                 setStep={setStep}
                 results={results}
                 handleResult={handleResult}
-                vocabularies={data}
+                vocabularies={_data}
+                setData={(data)=>handleSetData(data)}
             />
       }
-      {step > data.length - 1 && <ExcerciseResult results={results} reset={handleReset}/>}
+      {step > _data.length - 1 && <ExcerciseResult results={results} reset={handleReset}/>}
     </div>
   )
 }

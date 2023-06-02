@@ -1,5 +1,4 @@
 import {useState, Fragment, useEffect, memo, useMemo, forwardRef, useImperativeHandle} from "react";
-import Progress from "@/atoms/progress";
 import Button from "@/atoms/button";
 import {Result, Vocabulary} from "@/types/common";
 import { confirmAlert } from 'react-confirm-alert';
@@ -8,7 +7,7 @@ import {sampleSize} from 'lodash'
 
 const ExerciseInputVocabulary = dynamic(()=>import("@/molecules/Exercise/ExerciseInputVocabulary"),{ssr : false})
 
-const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handleResult} : {vocabularies : Vocabulary[],step : number,setStep : any,results : Result[],handleResult : any},ref) => {
+const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handleResult,setData} : {vocabularies : Vocabulary[],step : number,setStep : any,results : Result[],handleResult : any,setData},ref) => {
 
 
   const [_vocabularies,setVocabulary] = useState<Vocabulary[]>([])
@@ -32,6 +31,11 @@ const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handle
       }
     };
   });
+
+  useEffect(() => {
+    setVocabulary(sampleSize(vocabularies,vocabularies.length))
+  }, [vocabularies]);
+
 
   const handleFinish = () => {
     confirmAlert({
@@ -76,7 +80,7 @@ const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handle
   const reset = () => {
     const resultsFail = results.filter((item: Result)=>!item.result).map((item: Result)=>item.question)
     const vocabularies = _vocabularies.filter((vocabulary: Vocabulary)=>resultsFail.includes(vocabulary.vocabulary))
-    setVocabulary(sampleSize(vocabularies,vocabularies.length))
+    setData(vocabularies);
     setStep(0)
     handleResult([])
   }
@@ -97,7 +101,7 @@ const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handle
 
         </>
     )
-  },[displayItem,step])
+  },[_vocabularies,displayItem,step])
 
   return <>
 
