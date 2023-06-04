@@ -17,6 +17,10 @@ const Mask = ({value = '', haveMask = false,sound} : Props) => {
     setHasWindow(true)
   },[])
 
+  useEffect(()=>{
+    setIsOpen(!haveMask)
+  },[haveMask])
+
   return(
     <div className={'flex items-center gap-3 w-full cursor-pointer'}>
       <div className={`flex-1 ${isOpen ? '' : 'bg-black'} whitespace-pre-line`} onClick={()=>setIsOpen(!isOpen)}>

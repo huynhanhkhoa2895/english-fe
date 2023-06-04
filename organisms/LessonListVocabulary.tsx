@@ -1,5 +1,4 @@
 import TableVocabulary from "@/molecules/TableVocabulary";
-import useVocabulary from "@/hooks/useVocabulary";
 import {Lesson} from "@/types/common";
 import {useEffect, useState} from "react";
 
@@ -8,7 +7,7 @@ type Props = {
 }
 
 const LessonListVocabulary = ({lesson} : Props) => {
-  const {listRandomVocabulary} = useVocabulary();
+
   const [firstLoad,setFirstLoad] = useState<boolean>(false);
 
   useEffect(()=>{
@@ -17,7 +16,7 @@ const LessonListVocabulary = ({lesson} : Props) => {
 
   return(
     <>
-      {firstLoad && <TableVocabulary data={listRandomVocabulary(lesson.vocabularies)}/>}
+      {firstLoad && <TableVocabulary data={lesson.vocabularies}/>}
     </>
   )
 }

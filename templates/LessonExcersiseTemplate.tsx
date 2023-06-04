@@ -43,7 +43,7 @@ const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
                 results={results}
                 handleResult={handleResult}
                 vocabularies={_data}
-                setData={(data)=>handleSetData(data)}
+                setData={(data : any)=>handleSetData(data)}
             />
       }
       {step > _data.length - 1 && <ExcerciseResult results={results} reset={handleReset}/>}

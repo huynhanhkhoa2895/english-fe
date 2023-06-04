@@ -7,7 +7,7 @@ import {sampleSize} from 'lodash'
 
 const ExerciseInputVocabulary = dynamic(()=>import("@/molecules/Exercise/ExerciseInputVocabulary"),{ssr : false})
 
-const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handleResult,setData} : {vocabularies : Vocabulary[],step : number,setStep : any,results : Result[],handleResult : any,setData},ref) => {
+const ExerciseVocabulary = forwardRef(({vocabularies,results,step,setStep,handleResult,setData} : {vocabularies : Vocabulary[],step : number,setStep : any,results : Result[],handleResult : any,setData : any},ref) => {
 
 
   const [_vocabularies,setVocabulary] = useState<Vocabulary[]>([])
