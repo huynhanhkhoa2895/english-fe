@@ -9,7 +9,7 @@ const ExerciseTimeout = ({data,handleResult,setStep,step,results}:{data : any,ha
   const [timeout,setTimeout] = useState(0);
   const refTimeout = useRef<any>(null);
   const refTimeoutNumber = useRef<number>(0)
-  const [_date,setData] = useState<any>([])
+  const [_data,setData] = useState<any>([])
 
   useEffect(()=>{
     if (window){
@@ -59,7 +59,7 @@ const ExerciseTimeout = ({data,handleResult,setStep,step,results}:{data : any,ha
                   }
 
                   {
-                    data.map((content: QuestionTimeoutType, index: number) => (
+                    _data.map((content: QuestionTimeoutType, index: number) => (
                         step === index &&  <ExerciseItemTimeout setStep={setStep} step={step} key={index} content={content} handleResult={handleResult} results={results} />
                     ))
                   }

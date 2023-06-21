@@ -18,7 +18,6 @@ const RenderRowVocabulary = ({vocabulary,maskVocabularyAll,maskTranslateAll,mask
     isMobile: boolean,
   }
 ) => {
-  console.log("vocabulary",vocabulary)
   return(
       <tr>
         <td className={'border border-slate-300 p-2 lg:w-[200px]'}>
@@ -72,7 +71,7 @@ const TableVocabulary = ({data} : Props) => {
             isMobile={isMobile}
         />
     )
-  },[maskVocabularyAll,maskTranslateAll,maskDefineAll,maskExampleAll])
+  },[maskVocabularyAll,maskTranslateAll,maskDefineAll,maskExampleAll,isMobile])
 
   return(
       <>
@@ -80,7 +79,7 @@ const TableVocabulary = ({data} : Props) => {
           !isFirst &&  <table className={'table-fixed w-full border-collapse border border-slate-400'}>
             <thead>
             <tr>
-              <th className={'border border-slate-300 p-3 cursor-pointer w-[200px]'} onClick={()=>setMaskVocabularyAll(!maskVocabularyAll)}>Vocabulary</th>
+              <th className={'border border-slate-300 p-3 cursor-pointer lg:w-[200px]'} onClick={()=>setMaskVocabularyAll(!maskVocabularyAll)}>Vocabulary</th>
               <th className={'border border-slate-300 p-3 cursor-pointer '} onClick={()=>setMaskTranslateAll(!maskTranslateAll)}>Translate</th>
               {
                   !isMobile && (
