@@ -1,3 +1,5 @@
+'use client';
+
 import VocabularyTable from "@/organisms/VocabularyTable";
 
 const HomeTemplate = () => {

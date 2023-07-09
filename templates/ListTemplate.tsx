@@ -1,3 +1,4 @@
+'use client';
 import Box from "@/molecules/Box";
 import {Lesson, Practice} from "@/types/common";
 

@@ -1,3 +1,5 @@
+'use client';
+
 import ExerciseVocabulary from "@/molecules/Exercise/ExerciseVocabulary";
 import {Result, Vocabulary} from "@/types/common";
 import {useEffect, useRef, useState} from "react";

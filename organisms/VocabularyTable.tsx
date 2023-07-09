@@ -1,3 +1,5 @@
+'use client';
+
 import {PaginationData, Vocabulary} from "@/types/common";
 import Table from "@/molecules/Table";
 import useVocabulary from "@/hooks/useVocabulary";

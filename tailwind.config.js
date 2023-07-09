@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './atoms/**/*.{js,ts,jsx,tsx}',
     './molecules/**/*.{js,ts,jsx,tsx}',
@@ -13,7 +13,7 @@ module.exports = {
         'spin-circle': 'spin 1s linear infinite'
       },
       colors: {
-        primary: "#291D97",
+        primary: "#11c1ed",
         grey: '#ccc',
         secondary: "#d3a809",
         green: '#30ae27',

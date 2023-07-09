@@ -1,11 +1,13 @@
+'use client';
+
 import {useForm} from "react-hook-form";
 import useAuth from "@/hooks/useAuth";
 import FormControl from "@/molecules/FormControl";
 import Button from "@/atoms/button";
-import {useRouter} from "next/router";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import {useRouter} from "next/navigation";
 
 const AuthenticationTemplate = () => {
   const { register, handleSubmit, watch, formState: { errors }, control } = useForm();
@@ -29,7 +31,7 @@ const AuthenticationTemplate = () => {
   }
 
   return(
-      <div className={'w-full h-full max-w-[750px] max-h-[500px] border border-gray-500 rounded-3xl p-5'}>
+      <div className={'w-full h-max max-w-[750px] max-h-[500px] border border-gray-500 rounded-3xl p-5'}>
         <form className={'flex flex-col w-full gap-3'} onSubmit={handleSubmit(onSubmit)}>
           <div className={'w-full'}>
             <label>Email</label>

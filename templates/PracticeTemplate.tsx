@@ -1,3 +1,5 @@
+'use client';
+
 import Accordion from "@/molecules/Accordion";
 import {AccordionContent, Practice, Question} from "@/types/common";
 import Markdown from "@/molecules/Markdown";
@@ -6,6 +8,9 @@ import Video from "@/atoms/video";
 import Audio from "@/molecules/Audio";
 import {useRef} from "react";
 import useReading from "@/hooks/useReading";
+import {ToastContainer} from "react-toastify";
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import 'react-toastify/dist/ReactToastify.css';
 const PracticeTemplate = ({practice} : {practice : Practice}) => {
   const refContent = useRef<HTMLDivElement | null>(null);
   useReading(refContent)
@@ -73,11 +78,11 @@ const PracticeTemplate = ({practice} : {practice : Practice}) => {
             }
             <RenderQuestion />
           </>
-
         )
       }
-
+      <ToastContainer />
     </>
   )
 }
+
 export default PracticeTemplate

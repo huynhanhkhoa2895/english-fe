@@ -1,3 +1,11 @@
+
+export type StaticProps = {
+  params: {
+    id: string | number;
+  };
+  searchParams?: any
+};
+
 export type Category = {
   id: string | number;
   name: string;
@@ -19,6 +27,12 @@ export type Vocabulary = {
   sound?: string;
   definition?: string;
   category?: Category;
+  relationship? : VocabularyRelationship[];
+}
+
+export type VocabularyRelationship = {
+  relationship : string;
+  vocabulary: Vocabulary
 }
 
 export type Lesson = {

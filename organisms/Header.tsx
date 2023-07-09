@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {deleteCookie} from "cookies-next";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 
 const Header = () => {
 

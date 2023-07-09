@@ -4,41 +4,10 @@ import Audio from "@/molecules/Audio";
 import {Vocabulary} from "@/types/common";
 import {boolean} from "property-information/lib/util/types";
 import useVocabulary from "@/hooks/useVocabulary";
+import RowVocabulary from "@/molecules/TableVocabulary/RowVocabulary";
 
 type Props = {
   data : Vocabulary[]
-}
-
-const RenderRowVocabulary = ({vocabulary,maskVocabularyAll,maskTranslateAll,maskDefineAll,maskExampleAll,isMobile} : {
-    vocabulary : Vocabulary,
-    maskVocabularyAll: boolean,
-    maskTranslateAll: boolean,
-    maskDefineAll: boolean,
-    maskExampleAll: boolean,
-    isMobile: boolean,
-  }
-) => {
-  return(
-      <tr>
-        <td className={'border border-slate-300 p-2 lg:w-[200px]'}>
-          <div className={'flex gap-1'}>
-            <Mask value={
-                vocabulary.vocabulary.toLowerCase() + (vocabulary.parts_of_speech ? ` (${vocabulary.parts_of_speech})`: '') + (vocabulary.transcript ? `\n(${vocabulary.transcript})`: '')
-            } haveMask={maskVocabularyAll} />
-            {vocabulary.sound && <Audio src={vocabulary.sound || ''} />}
-          </div>
-        </td>
-        <td className={'border border-slate-300 p-2'}>{vocabulary.translate && <Mask value={vocabulary.translate} haveMask={maskTranslateAll}/>}</td>
-        {
-            !isMobile && (
-                <>
-                  <td className={'border border-slate-300 p-2'}>{vocabulary.definition && <Mask value={vocabulary.definition} haveMask={maskDefineAll}/>}</td>
-                  <td className={'border border-slate-300 p-2'}>{vocabulary.example && <Mask value={vocabulary.example} haveMask={maskExampleAll}/>}</td>
-                </>
-            )
-        }
-      </tr>
-  )
 }
 
 const TableVocabulary = ({data} : Props) => {
@@ -61,7 +30,7 @@ const TableVocabulary = ({data} : Props) => {
 
   const RenderVocabulary : any = useMemo(() => {
     return _data && _data.map((vocabulary : Vocabulary,key : number)=>
-        <RenderRowVocabulary
+        <RowVocabulary
             key={key}
             vocabulary={vocabulary}
             maskVocabularyAll={maskVocabularyAll}

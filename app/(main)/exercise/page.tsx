@@ -1,3 +1,5 @@
+'use client';
+
 import ExerciseVocabulary from "@/molecules/Exercise/ExerciseVocabulary";
 import {useDispatch, useSelector} from "react-redux";
 import {selectVocabularySelected} from "@/reducers/select";
