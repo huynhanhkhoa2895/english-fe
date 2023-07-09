@@ -16,7 +16,7 @@ const PracticeDetail = async ({params} : StaticProps) => {
 }
 export default PracticeDetail
 
-export async function getPracticeDetail(params : any) {
+async function getPracticeDetail(params : any) {
   const cookieStore = cookies()
   const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/practice/'+params.id,{
     headers: {

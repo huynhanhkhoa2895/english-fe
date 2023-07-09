@@ -2,7 +2,7 @@ import ListTemplate from "@/templates/ListTemplate";
 import {logout} from "@/util/help";
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-export async function getListLesson() {
+async function getListLesson() {
   const cookieStore = cookies()
   const data = await fetch(process.env.NEXT_PUBLIC_APP_BE+'/api/lesson/',{
     headers: {

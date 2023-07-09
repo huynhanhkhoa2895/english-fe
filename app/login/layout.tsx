@@ -1,9 +1,8 @@
-import {Main} from "next/document";
-
-export default ({children} : any) => {
+const RootLayout = ({children} : any) => {
   return(
       <>
         {children}
       </>
   )
 }
+export default RootLayout

@@ -11,7 +11,7 @@ const LessonDetailTemplate = ({lesson} : {lesson : Lesson}) => {
           lesson && (
               <>
                 <LessonListButtonGroup className={'mb-3'} lesson={lesson} />
-                <LessonListVocabulary lesson={lesson} />
+                <LessonListVocabulary vocabulary={lesson.vocabularies} />
               </>
             )
         }

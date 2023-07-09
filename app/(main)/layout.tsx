@@ -1,7 +1,7 @@
 import DefaultLayout from "@/templates/DefaultLayout";
 import Provider from "@/reducers/provider";
 
-export default ({children} : any) => {
+const MainLayout = ({children} : any) => {
   return(
       <Provider>
         <DefaultLayout>
@@ -11,3 +11,4 @@ export default ({children} : any) => {
 
   )
 }
+export default MainLayout
