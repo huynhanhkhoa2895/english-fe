@@ -8,14 +8,13 @@ import ExerciseTimeout from "@/molecules/Exercise/ExerciseTimeout";
 import {sampleSize} from "lodash";
 import Progress from "@/atoms/progress";
 
-const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
+const LessonExerciseVocabularyTemplate = ({data,type} : {data : any,type : string}) => {
   const [results,setResult] = useState<Result[]>([])
   const [_data,setData] = useState<any>(data)
   const [step,setStep] = useState<number>(0)
   const ref = useRef<any>()
   const refOriginData = useRef<any>(data)
   const handleResult = (results : Result[]) => {
-    console.log("results",results)
     setResult(()=>results)
   }
 
@@ -52,4 +51,4 @@ const LessonExcersiseTemplate = ({data,type} : {data : any,type : string}) => {
     </div>
   )
 }
-export default LessonExcersiseTemplate
+export default LessonExerciseVocabularyTemplate

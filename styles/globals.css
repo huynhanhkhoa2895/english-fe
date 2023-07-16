@@ -14,3 +14,13 @@ body, html{
     padding: 0;
 }
 
+@layer base {
+    .markdown ul{
+        @apply list-disc pl-5
+    }
+
+    .markdown ol{
+        @apply list-decimal pl-5
+    }
+}
+

@@ -2,6 +2,7 @@
 export type StaticProps = {
   params: {
     id: string | number;
+    modules?: string
   };
   searchParams?: any
 };
@@ -38,7 +39,8 @@ export type VocabularyRelationship = {
 export type Lesson = {
   id: string | number;
   name: string;
-  vocabularies: Vocabulary[]
+  vocabularies: Vocabulary[];
+  interview_questions: InterviewQuestion[];
   createdAt?: string;
 }
 
@@ -102,3 +104,9 @@ export type PaginationData = {
   total: number
 }
 
+export type InterviewQuestion = {
+  question: string;
+  answer: string;
+  tags: string[];
+  sound: string;
+}

@@ -22,8 +22,11 @@ const CellVocabulary = ({vocabulary,maskVocabularyAll} : Props) => {
                       {
                         vocabulary.relationship?.map((item: VocabularyRelationship,key : number)=>{
                           return(
-                            <li key={key}>
-                              <b>{item.vocabulary.vocabulary}</b>: {item.relationship}
+                            <li className={'flex'} key={key}>
+                              <div>
+                                <b>{item.vocabulary.vocabulary} ({item.vocabulary.parts_of_speech})</b>: {item.relationship}
+                              </div>
+                              <Audio src={item.vocabulary.vocabulary+'.mp3' || ''} autoplay={false} />
                             </li>
                           )
                         })

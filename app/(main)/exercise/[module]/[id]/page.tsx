@@ -1,7 +1,8 @@
-import LessonExcersiseTemplate from "@/templates/LessonExcersiseTemplate";
 import {StaticProps} from "@/types/common";
 import {redirect} from "next/navigation";
 import {cookies} from "next/headers";
+import LessonExerciseVocabularyTemplate from "@/templates/LessonExerciseVocabularyTemplate";
+import LessonExerciseQuestionTemplate from "@/templates/LessonExerciseQuestionTemplate";
 
 async function getExerciseDetail({params,searchParams} : StaticProps) {
   const cookieStore = cookies()
@@ -12,8 +13,16 @@ async function getExerciseDetail({params,searchParams} : StaticProps) {
     }
   }).then((res)=>res.json()).catch((e)=>redirect('/login'))
 
+  let _data = null
+
+  if(params.modules === 'vocabulary') {
+    _data = (query?.type === "timeout" ? data?.data : data?.data?.vocabularies) || null
+  } else {
+    _data = data?.data?.interview_questions || null
+  }
+
   return  {
-    data: (query?.type === "timeout" ? data?.data : data?.data?.vocabularies) || null,
+    data: _data,
     type: query?.type || null,
   }
 }
@@ -22,7 +31,12 @@ async function ExerciseDetail ({params,searchParams}: any){
   const {data,type} = await getExerciseDetail({params,searchParams})
   return(
       <>
-        {data && <LessonExcersiseTemplate data={data} type={type}/>}
+        {data && (
+            params.module === 'vocabulary' ?
+              <LessonExerciseVocabularyTemplate data={data} type={type}/> :
+                <LessonExerciseQuestionTemplate data={data} />
+            )
+        }
       </>
   )
 }

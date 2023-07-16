@@ -1,5 +1,5 @@
 import {sampleSize} from 'lodash'
-import {Vocabulary} from "@/types/common";
+import {InterviewQuestion, Vocabulary} from "@/types/common";
 import {useEffect, useState} from "react";
 import {getCookie} from "cookies-next";
 const useVocabulary = () => {
@@ -29,8 +29,8 @@ const useVocabulary = () => {
         .then((res)=>setData(res.data));
   }
 
-  const listRandomVocabulary = (vocabularies : Vocabulary[]) => {
-    return sampleSize(vocabularies, vocabularies.length);
+  const listRandomData = (data : Vocabulary[] | InterviewQuestion[]) => {
+    return sampleSize(data, data.length);
   }
 
   const setPageNumber = (pageNumber: number) => {
@@ -48,6 +48,6 @@ const useVocabulary = () => {
   const paginationData = () => {
     return {...data}
   }
-  return {listRandomVocabulary,paginationData,setPageNumber,setSortField,setPageLimit}
+  return {listRandomData,paginationData,setPageNumber,setSortField,setPageLimit}
 }
 export default useVocabulary

@@ -1,13 +1,11 @@
-import Mask from "@/molecules/Mask";
 import {Fragment, useEffect, useMemo, useState} from "react";
-import Audio from "@/molecules/Audio";
-import {Vocabulary} from "@/types/common";
-import {boolean} from "property-information/lib/util/types";
+import {InterviewQuestion, Vocabulary} from "@/types/common";
 import useVocabulary from "@/hooks/useVocabulary";
 import RowVocabulary from "@/molecules/TableVocabulary/RowVocabulary";
 
+
 type Props = {
-  data : Vocabulary[]
+  data : Vocabulary[],
 }
 
 const TableVocabulary = ({data} : Props) => {
@@ -17,8 +15,8 @@ const TableVocabulary = ({data} : Props) => {
   const [maskExampleAll,setExampleDefineAll] = useState(true)
   const [isFirst,setIsFirst] = useState<boolean>(true)
   const [isMobile,setIsMobile] = useState<boolean>(false)
-  const {listRandomVocabulary} = useVocabulary();
-  const [_data,setData] = useState<any>(listRandomVocabulary(data))
+  const {listRandomData} = useVocabulary();
+  const [_data,setData] = useState<any>(listRandomData(data))
   useEffect(()=>{
     if(window){
       setIsFirst(false)

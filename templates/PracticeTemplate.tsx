@@ -11,6 +11,7 @@ import useReading from "@/hooks/useReading";
 import {ToastContainer} from "react-toastify";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'react-toastify/dist/ReactToastify.css';
+
 const PracticeTemplate = ({practice} : {practice : Practice}) => {
   const refContent = useRef<HTMLDivElement | null>(null);
   useReading(refContent)

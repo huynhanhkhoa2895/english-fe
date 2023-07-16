@@ -4,13 +4,14 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = {
   list : AccordionContent[]
-  classNameItem?: string
+  classNameItem?: string;
+  defaultOpen?: boolean
 }
 
-const Accordion = ({list,classNameItem = ''} : Props) => {
+const Accordion = ({list,classNameItem = '',defaultOpen = false} : Props) => {
   return(
       <>
-        <HeadlessAccordion defaultActiveKey={[`0`,'1']} multipleOpen>
+        <HeadlessAccordion defaultActiveKey={defaultOpen ? [`0`,'1'] : []} multipleOpen>
           {list.map((item, key) => (
               <HeadlessAccordion.Item className={'mb-3'} key={key} eventKey={`${key}`} >
                 {({ open }) => {

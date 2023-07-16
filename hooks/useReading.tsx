@@ -3,7 +3,6 @@ import {LegacyRef, useEffect} from "react";
 const useReading = (refReading: any) => {
 
   useEffect(()=>{
-    console.log("document",document)
     if(document && refReading && refReading?.current) {
       // refReading.current.addEventListener("mouseup",handleMouseUp)
       refReading.current.addEventListener("touchend",handleTouch)
