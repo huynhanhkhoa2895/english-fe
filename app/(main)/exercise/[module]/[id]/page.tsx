@@ -11,11 +11,14 @@ async function getExerciseDetail({params,searchParams} : StaticProps) {
     headers: {
       "Authorization" : "Bearer "+cookieStore.get(('token' as any))?.value
     }
-  }).then((res)=>res.json()).catch((e)=>redirect('/login'))
+  }).then((res)=>res.json()).catch((e)=> {
+    redirect('/login')
+  })
 
   let _data = null
 
-  if(params.modules === 'vocabulary') {
+
+  if(params.module === 'vocabulary') {
     _data = (query?.type === "timeout" ? data?.data : data?.data?.vocabularies) || null
   } else {
     _data = data?.data?.interview_questions || null

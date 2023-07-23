@@ -2,7 +2,7 @@
 export type StaticProps = {
   params: {
     id: string | number;
-    modules?: string
+    module?: string
   };
   searchParams?: any
 };
