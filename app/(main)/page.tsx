@@ -1,8 +1,11 @@
-import DefaultLayout from "@/templates/DefaultLayout";
 import HomeTemplate from "@/templates/HomeTemplate";
+import DefaultLayout from "@/templates/DefaultLayout";
 
 export default async () => {
-  return(
-      <HomeTemplate />
-  )
+    return (
+        <DefaultLayout isUseShadow={false}>
+            <HomeTemplate/>
+        </DefaultLayout>
+
+    )
 }

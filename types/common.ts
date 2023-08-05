@@ -1,112 +1,111 @@
-
 export type StaticProps = {
-  params: {
-    id: string | number;
-    module?: string
-  };
-  searchParams?: any
+    params: {
+        id: string | number;
+        module?: string
+    };
+    searchParams?: any
 };
 
 export type Category = {
-  id: string | number;
-  name: string;
+    id: string | number;
+    name: string;
 }
 
 export type AccordionContent = {
-  title: string;
-  content: string | JSX.Element;
+    title: string;
+    content: string | JSX.Element;
 }
 
 export type Vocabulary = {
-  id: string | number;
-  vocabulary: string;
-  translate?: string;
-  transcript?: string;
-  parts_of_speech?: string;
-  spelling?: string;
-  example?: string;
-  sound?: string;
-  definition?: string;
-  category?: Category;
-  relationship? : VocabularyRelationship[];
+    id: string | number;
+    vocabulary: string;
+    translate?: string;
+    transcript?: string;
+    parts_of_speech?: string;
+    spelling?: string;
+    example?: string;
+    sound?: string;
+    definition?: string;
+    category?: Category;
+    relationship?: VocabularyRelationship[];
 }
 
 export type VocabularyRelationship = {
-  relationship : string;
-  vocabulary: Vocabulary
+    relationship: string;
+    vocabulary: Vocabulary
 }
 
 export type Lesson = {
-  id: string | number;
-  name: string;
-  vocabularies: Vocabulary[];
-  interview_questions: InterviewQuestion[];
-  createdAt?: string;
+    id: string | number;
+    name: string;
+    vocabularies: Vocabulary[];
+    interview_questions: InterviewQuestion[];
+    createdAt?: string;
 }
 
 export type Practice = {
-  id: string | number;
-  name: string;
-  level: string;
-  type: string;
-  instructions: string;
-  media: Media;
-  link_video: string;
-  content: string;
-  questions: Question[]
-  createdAt?: string;
+    id: string | number;
+    name: string;
+    level: string;
+    type: string;
+    instructions: string;
+    media: Media;
+    link_video: string;
+    content: string;
+    questions: Question[]
+    createdAt?: string;
 }
 
 export type Media = {
-  url: string;
-  type: string;
+    url: string;
+    type: string;
 }
 
 export type Question = {
-  id: string | number;
-  title: string;
-  type: string;
-  description: string;
-  contents: QuestionContent[];
+    id: string | number;
+    title: string;
+    type: string;
+    description: string;
+    contents: QuestionContent[];
 }
 
 export type QuestionContent = {
-  id: string | number;
-  question: string;
-  answer: string;
-  values?: QuestionContentValues[];
+    id: string | number;
+    question: string;
+    answer: string;
+    values?: QuestionContentValues[];
 }
 
 export type QuestionContentValues = {
-  id: string;
-  label : string;
-  value : string;
+    id: string;
+    label: string;
+    value: string;
 }
 
 export type Result = {
-  question : string;
-  answer: string;
-  correct_answer: string;
-  result : boolean;
+    question: string;
+    answer: string;
+    correct_answer: string;
+    result: boolean;
 }
 
 export type Student = {
-  id: string | number;
-  name: string;
-  position: string;
-  type: string;
-  practices: Practice[];
-  lessons: Lesson[]
+    id: string | number;
+    name: string;
+    position: string;
+    type: string;
+    practices: Practice[];
+    lessons: Lesson[]
 }
 
 export type PaginationData = {
-  data: Vocabulary[],
-  total: number
+    data: Vocabulary[],
+    total: number
 }
 
 export type InterviewQuestion = {
-  question: string;
-  answer: string;
-  tags: string[];
-  sound: string;
+    question: string;
+    answer: string;
+    tags: string[];
+    sound: string;
 }

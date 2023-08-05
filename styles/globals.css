@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html{
+body, html {
     height: 100%;
     width: 100%;
-    font-family: roboto,sans-serif;
+    font-family: roboto, sans-serif;
 }
 
 * {
@@ -15,11 +15,11 @@ body, html{
 }
 
 @layer base {
-    .markdown ul{
+    .markdown ul {
         @apply list-disc pl-5
     }
 
-    .markdown ol{
+    .markdown ol {
         @apply list-decimal pl-5
     }
 }

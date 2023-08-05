@@ -3,22 +3,21 @@
 import {useDispatch, useSelector} from "react-redux";
 import {selectVocabularySelected} from "@/reducers/select";
 import {useRouter} from "next/navigation";
-import {useEffect, useState} from "react";
-import {setSelectedVocabularyAction} from "@/reducers/vocabularyReducer";
+import {useEffect} from "react";
 
 const ExcerciseTemplate = () => {
-  const selectedVocabulary = useSelector(selectVocabularySelected)
-  const dispatch = useDispatch();
-  const router = useRouter()
+    const selectedVocabulary = useSelector(selectVocabularySelected)
+    const dispatch = useDispatch();
+    const router = useRouter()
 
-  useEffect(()=>{
-    if(!selectedVocabulary || !selectedVocabulary?.length) {
-      router.push("/");
-    }
-  },[])
+    useEffect(() => {
+        if (!selectedVocabulary || !selectedVocabulary?.length) {
+            router.push("/");
+        }
+    }, [])
 
-  return(
-      <></>
-  )
+    return (
+        <></>
+    )
 }
 export default ExcerciseTemplate

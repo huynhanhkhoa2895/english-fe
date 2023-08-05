@@ -1,18 +1,11 @@
-import DefaultLayout from "@/templates/DefaultLayout";
-import ListTemplate from "@/templates/ListTemplate";
-import axios from "axios";
-import {getCookie} from "cookies-next";
-import {Student} from "@/types/common"
-import {logout} from "@/util/help";
-
 const Practice = () => {
-  // const practice = student?.practices || []
-  return(
-      <>
-        {/*<ListTemplate data={practice} variant={'practice'} />*/}
-      </>
+    // const practice = student?.practices || []
+    return (
+        <>
+            {/*<ListTemplate data={practice} variant={'practice'} />*/}
+        </>
 
-  )
+    )
 }
 export default Practice
 

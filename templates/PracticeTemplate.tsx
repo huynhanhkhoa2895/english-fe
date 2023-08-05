@@ -12,78 +12,78 @@ import {ToastContainer} from "react-toastify";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-const PracticeTemplate = ({practice} : {practice : Practice}) => {
-  const refContent = useRef<HTMLDivElement | null>(null);
-  useReading(refContent)
-  const renderTypeTitle = () => {
-    switch (practice.type){
-      case "reading":
-        return "Reading text"
-      case "listening":
-        return "Reading text"
-      default:
-        return ""
+const PracticeTemplate = ({practice}: { practice: Practice }) => {
+    const refContent = useRef<HTMLDivElement | null>(null);
+    useReading(refContent)
+    const renderTypeTitle = () => {
+        switch (practice.type) {
+            case "reading":
+                return "Reading text"
+            case "listening":
+                return "Reading text"
+            default:
+                return ""
+        }
     }
-  }
 
-  const RenderQuestion = () => {
-    const list : AccordionContent[] = practice.questions.map((question: Question, index: number)=>({
-      title: "Task "+(index+1),
-      content: <Index type={practice.type} level={practice.level} question={question} practice_id={practice.id} />
-    }))
+    const RenderQuestion = () => {
+        const list: AccordionContent[] = practice.questions.map((question: Question, index: number) => ({
+            title: "Task " + (index + 1),
+            content: <Index type={practice.type} level={practice.level} question={question} practice_id={practice.id}/>
+        }))
 
-    return  <Accordion classNameItem={'p-0 bg-gray-500'} list={list} />
-  }
-
-  const RenderMedia = () => {
-    if(practice?.media?.type?.search("audio") > -1) {
-      return <Audio src={practice.media.url} icon={false} />
+        return <Accordion classNameItem={'p-0 bg-gray-500'} list={list}/>
     }
-    return null
-  }
 
-  const RenderVideo = () => {
-    return <Video src={practice.link_video} playing={false} />
-  }
+    const RenderMedia = () => {
+        if (practice?.media?.type?.search("audio") > -1) {
+            return <Audio src={practice.media.url} icon={false}/>
+        }
+        return null
+    }
 
-  return(
-    <>
-      {
-        practice && (
-          <>
-            <Accordion list={
-              [
-                {
-                  title: "Instructions",
-                  content: <Markdown content={practice.instructions || ''} />
-                },
-                {
-                  title: renderTypeTitle(),
-                  content: <div
-                      ref={refContent}
-                      id={practice.type === 'reading' ? 'content-reading' : ''}
-                      dangerouslySetInnerHTML={{__html: practice.content || ''}}
-                  />
-                }
-              ]
-            } />
-            <div className={'w-full mb-3'}>
-              <RenderMedia />
-            </div>
+    const RenderVideo = () => {
+        return <Video src={practice.link_video} playing={false}/>
+    }
+
+    return (
+        <>
             {
-              practice?.link_video && (
-                <div className={'w-full mb-3'}>
-                  <RenderVideo />
-                </div>
-              )
+                practice && (
+                    <>
+                        <Accordion list={
+                            [
+                                {
+                                    title: "Instructions",
+                                    content: <Markdown content={practice.instructions || ''}/>
+                                },
+                                {
+                                    title: renderTypeTitle(),
+                                    content: <div
+                                        ref={refContent}
+                                        id={practice.type === 'reading' ? 'content-reading' : ''}
+                                        dangerouslySetInnerHTML={{__html: practice.content || ''}}
+                                    />
+                                }
+                            ]
+                        }/>
+                        <div className={'w-full mb-3'}>
+                            <RenderMedia/>
+                        </div>
+                        {
+                            practice?.link_video && (
+                                <div className={'w-full mb-3'}>
+                                    <RenderVideo/>
+                                </div>
+                            )
+                        }
+                        <RenderQuestion/>
+                    </>
+                )
             }
-            <RenderQuestion />
-          </>
-        )
-      }
-      <ToastContainer />
-    </>
-  )
+            <ToastContainer/>
+        </>
+    )
 }
 
 export default PracticeTemplate

@@ -2,15 +2,15 @@ import {InterviewQuestion} from "@/types/common";
 import TableInterviewQuestion from "@/molecules/TableInterviewQuestion";
 
 type Props = {
-  questions : InterviewQuestion[]
+    questions: InterviewQuestion[]
 }
 
-const LessonListInterviewQuestion = ({questions} : Props) => {
+const LessonListInterviewQuestion = ({questions}: Props) => {
 
-  return(
-      <>
-        <TableInterviewQuestion data={questions} />
-      </>
-  )
+    return (
+        <>
+            <TableInterviewQuestion data={questions}/>
+        </>
+    )
 }
 export default LessonListInterviewQuestion

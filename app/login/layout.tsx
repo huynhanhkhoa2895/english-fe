@@ -1,8 +1,8 @@
-const RootLayout = ({children} : any) => {
-  return(
-      <>
-        {children}
-      </>
-  )
+const RootLayout = ({children}: any) => {
+    return (
+        <>
+            {children}
+        </>
+    )
 }
 export default RootLayout
