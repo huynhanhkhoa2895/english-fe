@@ -3,10 +3,10 @@ import {redirect} from 'next/navigation'
 import {cookies} from 'next/headers'
 
 async function getListLesson() {
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     const data = await fetch(process.env.NEXT_PUBLIC_APP_BE + '/api/lesson/', {
         headers: {
-            "Authorization": "Bearer " + cookieStore.get(('token' as any))?.value
+            "Authorization": "Bearer " + cookieStore.get(('token' as string))?.value
         }
     }).then((res) => res.json())
         .catch((e: any) => {

@@ -3,11 +3,11 @@ import {cookies} from "next/headers";
 
 export async function POST(req: Request) {
     const body = await req.json();
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     const result = await fetch(process.env.NEXT_PUBLIC_APP_BE + "/api/submit", {
         method: "POST",
         headers: {
-            "Authorization": "Bearer " + cookieStore.get(('token' as any))?.value,
+            "Authorization": "Bearer " + cookieStore.get(('token' as string))?.value,
             "Accept": "application/json",
             "Content-Type": "application/json"
         },

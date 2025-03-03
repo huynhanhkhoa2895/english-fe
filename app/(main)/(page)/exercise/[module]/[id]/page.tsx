@@ -4,12 +4,13 @@ import {cookies} from "next/headers";
 import LessonExerciseVocabularyTemplate from "@/templates/LessonExerciseVocabularyTemplate";
 import LessonExerciseQuestionTemplate from "@/templates/LessonExerciseQuestionTemplate";
 
-async function getExerciseDetail({params, searchParams}: StaticProps) {
-    const cookieStore = cookies()
+async function getExerciseDetail(payload: unknown) {
+    const {params, searchParams} = payload as StaticProps
+    const cookieStore = await cookies()
     const query: any = searchParams
     const data = await fetch(process.env.NEXT_PUBLIC_APP_BE + '/api/lesson/' + params.id + (query?.type === 'timeout' ? '?type=timeout' : ''), {
         headers: {
-            "Authorization": "Bearer " + cookieStore.get(('token' as any))?.value
+            "Authorization": "Bearer " + cookieStore.get(('token' as string))?.value
         }
     }).then((res) => res.json()).catch((e) => {
         redirect('/login')

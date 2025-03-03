@@ -4,7 +4,8 @@ import {Lesson, StaticProps} from '@/types/common'
 import {redirect} from 'next/navigation'
 import {cookies} from "next/headers";
 
-async function Lesson({params, searchParams}: StaticProps) {
+async function Lesson(payload: unknown) {
+    const {params, searchParams} = payload as StaticProps
     const lesson: Lesson = await getLessonDetail({params, searchParams});
     return (
         <LessonDetailTemplate lesson={lesson}/>
@@ -14,7 +15,7 @@ async function Lesson({params, searchParams}: StaticProps) {
 export default Lesson
 
 async function getLessonDetail({params, searchParams}: any) {
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     const query: any = searchParams
     let url = process.env.NEXT_PUBLIC_APP_BE + '/api/lesson/' + params.id;
     if (params.id === 'multiple') {
@@ -30,7 +31,7 @@ async function getLessonDetail({params, searchParams}: any) {
     }
     const data = await fetch(url, {
         headers: {
-            "Authorization": "Bearer " + cookieStore.get(('token' as any))?.value
+            "Authorization": "Bearer " + cookieStore.get(('token' as string))?.value
         }
     }).then((res) => res.json()).catch((e) => {
         return redirect('/login')
