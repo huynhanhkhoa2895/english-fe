@@ -36,7 +36,7 @@ async function ExerciseDetail({params, searchParams}: any) {
     return (
         <>
             {data && (
-                params.module === 'vocabulary' ?
+                params?.module === 'vocabulary' ?
                     <LessonExerciseVocabularyTemplate data={data} type={type}/> :
                     <LessonExerciseQuestionTemplate data={data}/>
             )

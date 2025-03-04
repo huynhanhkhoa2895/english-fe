@@ -6,7 +6,7 @@ import {useState} from "react";
 import Button from "@/atoms/button";
 
 const ExerciseInterviewQuestion = ({item}: { item: InterviewQuestion }) => {
-    const [display, setDisplay] = useState<boolean>(false)
+    const [display, setDisplay] = useState<boolean>(true);
     return (
         <>
             <div className={'flex flex-col gap-5'}>

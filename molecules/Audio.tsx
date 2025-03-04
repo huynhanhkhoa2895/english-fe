@@ -1,6 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMusic} from '@fortawesome/free-solid-svg-icons'
 import {useRef} from "react";
+import {PlayCircleOutlined} from "@ant-design/icons";
 
 const Audio = ({src, autoplay = false, icon = true, module = 'vocabulary'}: {
     src: string,
@@ -21,7 +22,7 @@ const Audio = ({src, autoplay = false, icon = true, module = 'vocabulary'}: {
             {
                 icon ?
                     <div className={'cursor-pointer'} onClick={() => handleClick()}>
-                        <FontAwesomeIcon icon={faMusic} width={15}/>
+                        <PlayCircleOutlined />
                         <audio ref={ref} className={'hidden'} controls autoPlay={autoplay}>
                             <source
                                 src={(module === 'interview_question' ? process.env.NEXT_PUBLIC_APP_BE + '/storage/interview/' : process.env.NEXT_PUBLIC_APP_BE + '/storage/speech/') + src}
